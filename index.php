@@ -18,17 +18,20 @@
             $input = $_POST["s_input"];
 
             // tokenize input
-            $tokens = tokenize($input);        
+            $tokens = tokenize($input);
+            $token_weight = [];
 
-            //compte weight of every token
+            //compute weight of every token
             $ctr = 0;
-            while ($ctr2 != sizeof($tokens)) {
-                
+            while ($ctr != sizeof($tokens)) {
+                $sql = "SELECT weight from scorealgo where word like '".$tokens[$ctr]."'";
+                $result = mysqli_fetch_array(mysqli_query($con, $sql));  
+                $token_weight[$tokens[$ctr]] = $result[0];
+                $ctr++;
             }
 
             $sql1 = "SELECT *, match(coursedesc) against('". $input ."') as score FROM course where match(coursedesc) against('".$input."') order by score desc";
             $sql2 = "SELECT *, match(coursedesc) against('". $input ."') as score FROM course where match(coursedesc) against('".$input."') order by score desc";
-
 
             $result1 = mysqli_query($con, $sql1);          
             $result2 = mysqli_query($con, $sql2);
@@ -50,9 +53,24 @@
                 $row2[$ctr]['coursedesc'] = $r2['coursedesc'];
                 $row2[$ctr]['coursecredit'] = $r2['coursecredit'];
 
-                $row2[$ctr]['score'] = $r2['score'] + $weight;
+                $desc = strtolower($row2[$ctr]['coursedesc']);
+                $ctr2 = 0;
+                $total_weight = 0;
+                $flag = 0;
+                while ($ctr2 != sizeof($tokens)) {
+                    $weight = substr_count($desc, $tokens[$ctr2]) * $token_weight[$tokens[$ctr2]];
+                    if ($weight == 0)
+                        $flag++;
+                    $total_weight += $weight;
+                    $ctr2++;
+                }
+
+                $total_weight += $flag;
+                $row2[$ctr]['score'] = $r2['score'] + $total_weight;
                 $ctr++;
             }
+            $row2 = orderBy($row2);
+
         }
         mysqli_close($con); 
     }

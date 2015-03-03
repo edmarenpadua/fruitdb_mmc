@@ -14,4 +14,12 @@
 
 		return $token_array;
 	}
+
+
+	function orderBy($data){
+		$code = "return strnatcmp(\$a['score'], \$b['score']);";
+		usort($data, create_function('$b, $a', $code));
+		return $data;
+	}
+
 ?>
