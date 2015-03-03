@@ -17,11 +17,20 @@
         else {
             $input = $_POST["s_input"];
 
+            // tokenize input
+            $tokens = tokenize($input);        
+
+            //compte weight of every token
+            $ctr = 0;
+            while ($ctr2 != sizeof($tokens)) {
+                
+            }
+
             $sql1 = "SELECT *, match(coursedesc) against('". $input ."') as score FROM course where match(coursedesc) against('".$input."') order by score desc";
-            
             $sql2 = "SELECT *, match(coursedesc) against('". $input ."') as score FROM course where match(coursedesc) against('".$input."') order by score desc";
 
-            $result1 = mysqli_query($con, $sql1);
+
+            $result1 = mysqli_query($con, $sql1);          
             $result2 = mysqli_query($con, $sql2);
 
             $ctr = 0;               
@@ -40,7 +49,8 @@
                 $row2[$ctr]['coursename'] = $r2['coursename'];
                 $row2[$ctr]['coursedesc'] = $r2['coursedesc'];
                 $row2[$ctr]['coursecredit'] = $r2['coursecredit'];
-                $row2[$ctr]['score'] = $r2['score'];
+
+                $row2[$ctr]['score'] = $r2['score'] + $weight;
                 $ctr++;
             }
         }
