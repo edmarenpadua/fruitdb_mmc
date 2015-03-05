@@ -30,16 +30,38 @@
             $result1 = mysqli_query($con, $sql1);          
             $result2 = mysqli_query($con, $sql2);
 
+            $sql3 = "SELECT * FROM course";
+            $numDocs = (mysqli_num_rows(mysqli_query($con, $sql3)));
+
+
+            $ctr2 = 0;
+            while($ctr2 != sizeof($tokens)){
+                $sql3 = "SELECT *, match(coursedesc) against('".$tokens[$ctr2]."') FROM course where match(coursedesc) against('".$tokens[$ctr2]."')";
+                $docFreq = (mysqli_num_rows(mysqli_query($con, $sql3)));
+                $idf[$tokens[$ctr2]] = log($numDocs/($docFreq+1))+1;
+                echo $idf[$tokens[$ctr2]]."\n";
+                $ctr2++;
+            }
             $ctr = 0;               
             while($r1 = mysqli_fetch_array($result1)){
+
                 $row1[$ctr]['coursecode'] = $r1['coursecode'];
                 $row1[$ctr]['coursename'] = $r1['coursename'];
                 $row1[$ctr]['coursedesc'] = $r1['coursedesc'];
                 $row1[$ctr]['coursecredit'] = $r1['coursecredit'];
                 $row1[$ctr]['score'] = $r1['score'];
+
+                $desc = strtolower($row1[$ctr]['coursedesc']);
+                $ctr2 = 0;
+                while ($ctr2 != sizeof($tokens)) {
+                    $row1[$ctr]['tf'][$tokens[$ctr2]] = sqrt(substr_count($desc, $tokens[$ctr2]));
+                    $ctr2++;
+                }
                 $ctr++;
             }
 
+            $row1 = orderBy($row1);
+            
             /*
                 desc score = number of word ocurrences * weight + match_against weight
                                 + 2(if exact words occur) 
