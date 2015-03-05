@@ -63,8 +63,6 @@
                     $ctr2++;
                 }
 
-               // $r2['coursedesc'] =  substr_replace($r2['coursedesc'], 'bob', 0, strlen($r2['coursedesc']))
-
                 //occurence of exact word * weight * 2
                 $exact_word_weight = substr_count($desc, $input) * $total_weight * 5;
 
@@ -91,7 +89,7 @@
 		<link href="css/freelancer.css" rel="stylesheet">
 		<link href="css/design.css" rel="stylesheet">
 
-		<link rel="shortcut icon" type="image/x-icon" href="img/uplb.png" />
+		<link rel="shortcut icon" type="image/x-icon" href="img/search.png" />
 	</head>
 
 	<body id="page-top" class="index">
