@@ -15,20 +15,14 @@
         
         if(mysqli_connect_error()) echo "Connection Fail";
         else {
+            $search_word = true;
             $input = $_POST["s_input"];
 
             // tokenize input
             $tokens = tokenize($input);
-            $token_weight = [];
-
+           
             //compute weight of every token
-            $ctr = 0;
-            while ($ctr != sizeof($tokens)) {
-                $sql = "SELECT weight from scorealgo where word like '".$tokens[$ctr]."'";
-                $result = mysqli_fetch_array(mysqli_query($con, $sql));  
-                $token_weight[$tokens[$ctr]] = $result[0];
-                $ctr++;
-            }
+            $token_weight = compute_weight($tokens, $con);
 
             $sql1 = "SELECT *, match(coursedesc) against('". $input ."') as score FROM course where match(coursedesc) against('".$input."') order by score desc";
             $sql2 = "SELECT *, match(coursedesc) against('". $input ."') as score FROM course where match(coursedesc) against('".$input."') order by score desc";
@@ -46,11 +40,15 @@
                 $ctr++;
             }
 
+            /*
+                desc score = number of word ocurrences * weight + match_against weight
+                                + 2(if exact words occur) 
+            */
             $ctr = 0;               
             while($r2 = mysqli_fetch_array($result2)){
                 $row2[$ctr]['coursecode'] = $r2['coursecode'];
                 $row2[$ctr]['coursename'] = $r2['coursename'];
-                $row2[$ctr]['coursedesc'] = $r2['coursedesc'];
+                $row2[$ctr]['coursedesc'] = highlight_words($r2['coursedesc'], $tokens);
                 $row2[$ctr]['coursecredit'] = $r2['coursecredit'];
 
                 $desc = strtolower($row2[$ctr]['coursedesc']);
@@ -65,8 +63,13 @@
                     $ctr2++;
                 }
 
+               // $r2['coursedesc'] =  substr_replace($r2['coursedesc'], 'bob', 0, strlen($r2['coursedesc']))
+
+                //occurence of exact word * weight * 2
+                $exact_word_weight = substr_count($desc, $input) * $total_weight * 5;
+
                 $total_weight += $flag;
-                $row2[$ctr]['score'] = $r2['score'] + $total_weight;
+                $row2[$ctr]['score'] = $r2['score'] + $total_weight + $exact_word_weight;
                 $ctr++;
             }
             $row2 = orderBy($row2);

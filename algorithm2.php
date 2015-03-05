@@ -1,6 +1,14 @@
 <?php
-	function findweight($word){
-		# code...
+	function compute_weight($tokens, $con){
+        $token_weight = [];
+        $ctr = 0;
+        while ($ctr != sizeof($tokens)) {
+            $sql = "SELECT weight from scorealgo where word like '".$tokens[$ctr]."'";
+            $result = mysqli_fetch_array(mysqli_query($con, $sql));  
+            $token_weight[$tokens[$ctr]] = $result[0];
+            $ctr++;
+        }
+        return $token_weight;
 	}
 
 	function tokenize($input){
@@ -15,11 +23,20 @@
 		return $token_array;
 	}
 
-
 	function orderBy($data){
 		$code = "return strnatcmp(\$a['score'], \$b['score']);";
 		usort($data, create_function('$b, $a', $code));
 		return $data;
+	}
+
+	function highlight_words($var, $tokens){
+		$ctr = 0;
+
+		while($ctr != sizeof($tokens)){
+			$var = preg_replace("/\w*".$tokens[$ctr]."\w*/i", "<b>$0</b>", $var);
+		 	$ctr++;
+		}
+		return $var;
 	}
 
 ?>
