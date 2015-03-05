@@ -34,12 +34,12 @@
             $numDocs = (mysqli_num_rows(mysqli_query($con, $sql3)));
 
 
+            $maxOverlap = sizeof($tokens);
             $ctr2 = 0;
-            while($ctr2 != sizeof($tokens)){
+            while($ctr2 != $maxOverlap){
                 $sql3 = "SELECT *, match(coursedesc) against('".$tokens[$ctr2]."') FROM course where match(coursedesc) against('".$tokens[$ctr2]."')";
                 $docFreq = (mysqli_num_rows(mysqli_query($con, $sql3)));
                 $idf[$tokens[$ctr2]] = log($numDocs/($docFreq+1))+1;
-                echo $idf[$tokens[$ctr2]]."\n";
                 $ctr2++;
             }
             $ctr = 0;               
@@ -50,13 +50,26 @@
                 $row1[$ctr]['coursedesc'] = $r1['coursedesc'];
                 $row1[$ctr]['coursecredit'] = $r1['coursecredit'];
                 $row1[$ctr]['score'] = $r1['score'];
-
                 $desc = strtolower($row1[$ctr]['coursedesc']);
+
+                $numTerms = sizeof(tokenize($desc));
+                $lengthNorm = 1/sqrt($numTerms);
+                $row1[$ctr]['score'] += $lengthNorm;
                 $ctr2 = 0;
-                while ($ctr2 != sizeof($tokens)) {
-                    $row1[$ctr]['tf'][$tokens[$ctr2]] = sqrt(substr_count($desc, $tokens[$ctr2]));
+                $overlap = 0;
+                while ($ctr2 != $maxOverlap) {
+                    $freq = substr_count($desc, $tokens[$ctr2]);
+                    $row1[$ctr]['tf'][$tokens[$ctr2]] = sqrt($freq);
+                    if($freq > 0){
+                        $overlap++;
+                        $tfidf = $row1[$ctr]['tf'][$tokens[$ctr2]]*$idf[$tokens[$ctr2]];
+                        $row1[$ctr]['score'] += $row1[$ctr]['tf'][$tokens[$ctr2]];
+                        $row1[$ctr]['score'] += $idf[$tokens[$ctr2]];
+                    }
                     $ctr2++;
                 }
+                $coord = $overlap/$maxOverlap;
+                $row1[$ctr]['score'] += $coord;
                 $ctr++;
             }
 
