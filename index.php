@@ -74,6 +74,7 @@
                 $row1[$ctr]['score'] = $r1['score'] +$lucene_score;
                 $ctr++;
             }
+            $row1 = orderBy($row1);
             
             /*
                 desc score = number of word ocurrences * weight + match_against weight

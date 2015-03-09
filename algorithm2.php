@@ -15,8 +15,9 @@
 		$token_array = [];
 		$token = strtok($input, " ");
 
-		while ($token !== false){
-			array_push($token_array, $token);
+		while ($token != false){
+			if(strlen($token)>=3)
+				array_push($token_array, $token);
 			$token = strtok(" ");
 		} 
 
