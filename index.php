@@ -11,6 +11,7 @@
     $row2 = [];
     $search_word = false;
     if(isset($_POST["submit"])) {
+        //edit this with your credentials
         $con = mysqli_connect("localhost", "root", "", "searchengine");
         
         if(mysqli_connect_error()) echo "Connection Fail";
@@ -66,16 +67,15 @@
                 }
 
                 $queryNorm = queryNorm($idf, $tokens);
-
                 $coord = coord($tokens, $document, $token_weight);
 
                 $lucene_score = $summation * $coord * $queryNorm;
 
-                $row1[$ctr]['score'] = $r1['score'] +$lucene_score;
+                $row1[$ctr]['score'] = $r1['score'] + $lucene_score;
                 $ctr++;
             }
             $row1 = orderBy($row1);
-            
+
             /*
                 desc score = number of word ocurrences * weight + match_against weight
                                 + 2(if exact words occur) 
