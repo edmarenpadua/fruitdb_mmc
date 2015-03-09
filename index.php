@@ -33,47 +33,47 @@
             $sql3 = "SELECT * FROM course";
             $numDocs = (mysqli_num_rows(mysqli_query($con, $sql3)));
 
-
             $maxOverlap = sizeof($tokens);
             $ctr2 = 0;
             while($ctr2 != $maxOverlap){
+                //compute inverse_document_frequency of term
                 $sql3 = "SELECT *, match(coursedesc) against('".$tokens[$ctr2]."') FROM course where match(coursedesc) against('".$tokens[$ctr2]."')";
                 $docFreq = (mysqli_num_rows(mysqli_query($con, $sql3)));
-                $idf[$tokens[$ctr2]] = log($numDocs/($docFreq+1))+1;
+                $idf[$tokens[$ctr2]] = idf($numDocs, $docFreq);
                 $ctr2++;
             }
+
             $ctr = 0;               
             while($r1 = mysqli_fetch_array($result1)){
-
                 $row1[$ctr]['coursecode'] = $r1['coursecode'];
                 $row1[$ctr]['coursename'] = $r1['coursename'];
-                $row1[$ctr]['coursedesc'] = $r1['coursedesc'];
+                $row1[$ctr]['coursedesc'] = highlight_words($r1['coursedesc'], $tokens);
                 $row1[$ctr]['coursecredit'] = $r1['coursecredit'];
-                $row1[$ctr]['score'] = $r1['score'];
-                $desc = strtolower($row1[$ctr]['coursedesc']);
-
-                $numTerms = sizeof(tokenize($desc));
-                $lengthNorm = 1/sqrt($numTerms);
-                $row1[$ctr]['score'] += $lengthNorm;
+                
+                $document = strtolower($row1[$ctr]['coursedesc']);
                 $ctr2 = 0;
-                $overlap = 0;
-                while ($ctr2 != $maxOverlap) {
-                    $freq = substr_count($desc, $tokens[$ctr2]);
-                    $row1[$ctr]['tf'][$tokens[$ctr2]] = sqrt($freq);
-                    if($freq > 0){
-                        $overlap++;
-                        $tfidf = $row1[$ctr]['tf'][$tokens[$ctr2]]*$idf[$tokens[$ctr2]];
-                        $row1[$ctr]['score'] += $row1[$ctr]['tf'][$tokens[$ctr2]];
-                        $row1[$ctr]['score'] += $idf[$tokens[$ctr2]];
-                    }
+                $summation = 0;
+                while ($ctr2 != sizeof($tokens)) {
+                    //compute term_frequency(term in document)
+                    $term_frequency = tf($tokens[$ctr2], $document);
+                    //get idf of term
+                    $inverse_document_frequency = $idf[$tokens[$ctr2]];
+                    //compute norm
+                    $norm = norm($document);
                     $ctr2++;
+
+                    $summation += $term_frequency*$inverse_document_frequency*$norm;
                 }
-                $coord = $overlap/$maxOverlap;
-                $row1[$ctr]['score'] += $coord;
+
+                $queryNorm = queryNorm($idf, $tokens);
+
+                $coord = coord($tokens, $document, $token_weight);
+
+                $lucene_score = $summation * $coord * $queryNorm;
+
+                $row1[$ctr]['score'] = $r1['score'] +$lucene_score;
                 $ctr++;
             }
-
-            $row1 = orderBy($row1);
             
             /*
                 desc score = number of word ocurrences * weight + match_against weight
