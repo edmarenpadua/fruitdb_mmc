@@ -34,7 +34,7 @@
 		$ctr = 0;
 
 		while($ctr != sizeof($tokens)){
-			$var = preg_replace("/\w*\s".$tokens[$ctr]."\s\w*/i", "<b>$0</b>", $var);
+			$var = preg_replace("/\s".$tokens[$ctr]."\s/i", "<b> ".$tokens[$ctr]." </b>", $var);
 		 	$ctr++;
 		}
 		return $var;
