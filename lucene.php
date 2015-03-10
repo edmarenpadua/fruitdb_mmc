@@ -23,12 +23,13 @@
 		$score = 0;
 		$term_count = 0;
 		while($ctr != $numTerms){
-			$score += $token_weight[$tokens[$ctr]] * tf($tokens[$ctr], $document);
-			//$term_count += tf($tokens[$ctr], $document);
+			$score += $token_weight[$tokens[$ctr]];
+			if(tf($tokens[$ctr], $document) > 0)
+				$term_count ++ ;
 			$ctr++;
 		}
 
-		return $score /$numTerms;
+		return ($score * $term_count) / $numTerms;
 	}
 
 	function queryNorm($idf_array, $tokens){
