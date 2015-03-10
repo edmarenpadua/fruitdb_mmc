@@ -1,1 +1,2 @@
 Lucene's Practical Scoring Function. (n.d.). Retrieved March 8, 2015, from http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/practical-scoring-function.html
+Lucene Scoring - LuceneTutorial.com. (n.d.). Retrieved March 10, 2015, from http://www.lucenetutorial.com/advanced-topics/scoring.html

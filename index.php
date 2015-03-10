@@ -63,7 +63,7 @@
                     $norm = norm($document);
                     $ctr2++;
 
-                    $summation += $term_frequency*$inverse_document_frequency*$norm;
+                    $summation += $term_frequency*$inverse_document_frequency*$inverse_document_frequency*$norm;
                 }
 
                 $queryNorm = queryNorm($idf, $tokens);
@@ -71,7 +71,7 @@
 
                 $lucene_score = $summation * $coord * $queryNorm;
 
-                $row1[$ctr]['score'] = $r1['score'] + $lucene_score;
+                $row1[$ctr]['score'] = $lucene_score;
                 $ctr++;
             }
             $row1 = orderBy($row1);

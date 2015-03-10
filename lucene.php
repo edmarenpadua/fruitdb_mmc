@@ -1,7 +1,7 @@
 <?php
 	//computes frequency of word from document
 	function tf($term, $document){
-		return substr_count($document, $term);
+		return sqrt(substr_count($document, $term));
 	}
 
 	//computes frequency of word from all documents
@@ -24,7 +24,7 @@
 		$term_count = 0;
 		while($ctr != $numTerms){
 			$score += $token_weight[$tokens[$ctr]];
-			if(tf($tokens[$ctr], $document) > 0)
+			if(substr_count($document, $tokens[$ctr]))
 				$term_count ++ ;
 			$ctr++;
 		}
