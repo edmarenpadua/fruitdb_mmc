@@ -1,9 +1,6 @@
-# searchengine191
-A search engine application with user-defined ranking algorithm to compute and sort results
+# fruitdb_mmc
+A web application using MySQL, MongoDB, and CouchDB
 
-0. Create a database named "searchengine"
-1. Import to database the ff sql files:
-	> database/searchengine.sql 			#includes the course table
-	> database/scorealgo.sql 	#table of word - occurences of word - weight
-2. Open "index.php" and edit line 15
-3. Open localhost/\<whatevryourfoldernameis\> in your favorite browsah
+0. 
+1.
+2.
