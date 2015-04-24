@@ -2,11 +2,13 @@
 
 // Config
 $dbhost = 'localhost';
-$dbname = 'fruit_db';
+$dbname = 'zipcoll';
  
 $db = new MongoClient('mongodb://localhost', array());
 
-/*$c1 = $db->selectCollection("test", "zipcoll");
+$c1 = $db->selectCollection("test", "zipcoll");
+
+echo $c1;
 
 $cursor = $c1->find();
 
@@ -16,6 +18,6 @@ foreach ($cursor as $doc) {
 	$city = $doc['city'];
 	$state = $doc['state'];
 	echo 'City: '.$city.' State: '.$state.' Pop: '.$population."<br/>";
-}*/
- 
+}
+ echo "hello";
 ?>
