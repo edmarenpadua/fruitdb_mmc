@@ -48,6 +48,7 @@ require_once("mongodb/mongodb_connect.php");
 								
 								<br>
 								<div style="float:right;"><input type = "submit" name="submit" value="Add fruit data"  class="btn btn-default" /></div>
+								</form>
 							</div>
 						</div>
 			        	<div class="tab-pane fade" id="edit">
