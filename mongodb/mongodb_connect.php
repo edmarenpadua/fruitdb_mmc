@@ -11,15 +11,15 @@ $c1 = $conn->$select_db->selectCollection("fruit");
 $c2 = $conn->$select_db->selectCollection("fruit_price");
 
 /*
-	ADD on fruit DB
+	INSERT on fruit DB
 */
- //if(isset($_POST["save"])) {
+ if(isset($_POST["save"])) {
  	$fruit = array();
  	$fruit_price = array();
 
- 	$fruit['name'] ="PINEAPPLE";
- 	$fruit['quantity']  = "10";
- 	$fruit['distributor']  = "DEL MONTE";
+ 	$fruit['name'] = $_POST['name'];
+ 	$fruit['quantity']  = $_POST['quantity'];
+ 	$fruit['distributor']  = $_POST['distributor'];
 
 	//add to fruit collection
 	$c1->insert($fruit);
@@ -27,11 +27,11 @@ $c2 = $conn->$select_db->selectCollection("fruit_price");
 	echo $fruit['_id'];
 
  	$fruit_price['fruit_id'] = (string)$fruit['_id'];
- 	$fruit_price['price']  = "350";
+ 	$fruit_price['price']  = $_POST['price'];
  	$fruit_price['date']  = date("Y-m-d");
 	//add to fruit_price collection
 	$c2->insert($fruit_price);
-//}
+}
 
 
 /*
