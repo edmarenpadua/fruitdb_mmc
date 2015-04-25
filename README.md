@@ -1,6 +1,13 @@
 # fruitdb_mmc
 A web application using MySQL, MongoDB, and CouchDB
 
+########## MYSQL DB STUFF ##########
+SCHEMA:
+####################################
+
+########## COUCH DB STUFF ##########
+SCHEMA:
+####################################
 
 ########## MONGO DB STUFF ##########
 Set up for MongoDB:
