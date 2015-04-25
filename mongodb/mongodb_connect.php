@@ -13,13 +13,10 @@ $c2 = $conn->$select_db->selectCollection("fruit_price");
 /*
 	ADD on fruit DB
 */
- if(isset($_POST["save"])) {
+ //if(isset($_POST["save"])) {
  	$fruit = array();
  	$fruit_price = array();
 
- 	$original_id = new MongoID();
-
-  	$fruit['_id']= $original_id;
  	$fruit['name'] ="PINEAPPLE";
  	$fruit['quantity']  = "10";
  	$fruit['distributor']  = "DEL MONTE";
@@ -27,12 +24,14 @@ $c2 = $conn->$select_db->selectCollection("fruit_price");
 	//add to fruit collection
 	$c1->insert($fruit);
 
- 	$fruit_price['fruit_id'] = $original_id;
+	echo $fruit['_id'];
+
+ 	$fruit_price['fruit_id'] = (string)$fruit['_id'];
  	$fruit_price['price']  = "350";
  	$fruit_price['date']  = date("Y-m-d");
 	//add to fruit_price collection
-	$c2->save($fruit_price);
-}
+	$c2->insert($fruit_price);
+//}
 
 
 /*
@@ -57,8 +56,10 @@ foreach ($cursor as $doc) {
 		$id = $doc2['fruit_id'];
 		$price = $doc2['price'];
 		$date = $doc2['date'];
-		echo '<br>Fruit ID: '.$id.'<br>Price: '.$price.'<br>Date: '.$date."<br/>";
+		echo '<br>Price: '.$price.'<br>Date: '.$date."<br/>";
 	}
+
+	echo "###################<br>";
 }
 
 
