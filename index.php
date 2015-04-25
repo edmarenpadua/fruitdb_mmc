@@ -1,34 +1,88 @@
 <?php
-require_once("mongodb/mongodb_connect.php");
+//require_once("mongodb/mongodb_connect.php");
 
 ?>
 
-<html>
-<form action="" method="post">
-    <div>
-    	<label for="name">Name</label>
-	    <input type="text" name="name" id="name" required="required"/>
 
-	    <br>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
-    	<label for="quantity">Quantity</label>
-	    <input type="text" name="quantity" id="quantity" required="required"/>
+	</head>
+	
+	<body>
 
-	    <br>
+		<div class="container-fluid">
+			<h1>CSMC 191</h1>
+			<p>Management and Trends</p>
+			<p>MySQL, MongoDB, CouchDB</p>
 
-    	<label for="distributor">Distributor</label>
-	    <input type="text" name="distributor" id="distributor" required="required"/>
+			<div class="border row">
+				<div class="border col-sm-3" style="background-color:lavender;">
+					<p>Modify Data
+					<br>
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a href="#add" data-toggle="tab">Add</a></li>
+						<li><a href="#edit" data-toggle="tab">Edit</a></li>
+						<li><a href="#delete" data-toggle="tab">Delete</a></li>
+					</ul>
 
-	    <br>
 
-    	<label for="price">Price</label>
-	    <input type="text" name="price" id="price" required="required"/>
+ 					<div id="myTabContent" class="tab-content">
+			        	<div class="tab-pane fade in active" id="add">
+			        		<br>
+							<div class="control-group">
+								<div class="form-group">Fruit Name:<input class="form-control" type="text" placeholder="e.g. Mango" /></div>
+								<div class="form-group">Fruit Quantity:<input class="form-control" type="text" placeholder="e.g. 5" /></div>
+								<div class="form-group">Fruit Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" /></div>
+								<div class="form-group">Fruit Prize:<input class="form-control" type="text" placeholder="e.g. 10.00" /></div>
+								
+								<br>
+								<div style="float:right;"><input type = "submit" name="submit" value="add fruit data"  class="btn btn-default" /></div>
+							</div>
+						</div>
+			        	<div class="tab-pane fade" id="edit">
+			          
+			        	</div>
 
-	    <br>
+			        	<div class="tab-pane fade" id="delete">
 
-    	<label for="date">Date</label>
-	    <input type="text" name="date" id="date" required="required"/>
-	    
-    <div class="submit"><input type="submit" name="save" value="Save"/></div>
-</form>
+						</div>
+			   
+					</div>
+
+
+					<br><br><br><br>
+					</p>
+				</div>
+
+				<div class="border col-sm-3" style="background-color:lavenderblush;">
+					<p>mysqlDB
+					<br><br><br><br><br><br><br>
+					</p>
+				</div>
+
+				<div class="border col-sm-3" style="background-color:lightcyan;">
+					<p>mongoDB
+					<br><br><br><br><br><br><br>
+					</p>
+				</div>
+
+				<div class="border col-sm-3" style="background-color:pink;">
+					<p>couchDB
+					<br><br><br><br><br><br><br>
+					</p>
+				</div>
+
+			</div>
+			
+		</div>
+
+	</body>
 </html>
