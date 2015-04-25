@@ -52,6 +52,68 @@ require_once("mongodb/mongodb_connect.php");
 						</div>
 			        	<div class="tab-pane fade" id="edit">
 			          
+
+
+							<div class="bs-example">
+							    <div class="panel-group" id="accordion">
+							        <div class="panel panel-default">
+							            <div class="panel-heading">
+							                <h4 class="panel-title">
+							                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Fruit Data 1</a>
+							                </h4>
+							            </div>
+							            <div id="collapseOne" class="panel-collapse collapse in">
+							                <div class="panel-body">
+							                    <p>form</p>
+							                    <div style="float:right;"><input type = "submit" name="submit" value="edit fruit data"  class="btn btn-default" /></div>
+
+							                </div>
+							            </div>
+							        </div>
+							        <div class="panel panel-default">
+							            <div class="panel-heading">
+							                <h4 class="panel-title">
+							                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Fruit Data 2</a>
+							                </h4>
+							            </div>
+							            <div id="collapseTwo" class="panel-collapse collapse">
+							                <div class="panel-body">
+							                    <p>form</p>
+							                    <div style="float:right;"><input type = "submit" name="submit" value="edit fruit data"  class="btn btn-default" /></div>
+
+							                </div>
+							            </div>
+							        </div>
+							        <div class="panel panel-default">
+							            <div class="panel-heading">
+							                <h4 class="panel-title">
+							                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Fruit Data 3</a>
+							                </h4>
+							            </div>
+							            <div id="collapseThree" class="panel-collapse collapse">
+							                <div class="panel-body">
+							                    <p>form</p>
+							                    <div style="float:right;"><input type = "submit" name="submit" value="edit fruit data"  class="btn btn-default" /></div>
+
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			        	</div>
 
 			        	<div class="tab-pane fade" id="delete">
