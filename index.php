@@ -135,9 +135,39 @@ require_once("mongodb/mongodb_connect.php");
 				</div>
 
 				<div class="border col-sm-3" style="background-color:lightcyan;">
-					<p>mongoDB
-					<br><br><br><br><br><br><br>
-					</p>
+					<h4>mongoDB</h4>
+					<table class="table table-striped table-hover">
+						<?php
+							$i = 0; $j = 0;
+							if (count($mongodb)==0)
+								echo "<label><h4>Nothing to display</h4></label>";
+							else
+								echo "<th>Name</th><th>Quantity</th><th>Distributor</th>";
+							while ($i != count($mongodb)){
+								echo "<tr class = 'active'>";
+								echo "<td>".$mongodb[$i]['name']."</td>";
+								echo "<td>".$mongodb[$i]['quantity']."</td>";
+								echo "<td>".$mongodb[$i]['distributor']."</td>";
+								echo "</tr>";
+								echo "<tr><td></td>";
+								//var_dump($mongodb[$i]['price_date']);
+								while($j != count($mongodb[$i]['price_date']) && count($mongodb[$i]['price_date']) > 0){
+									echo "<td>".$mongodb[$i]['price_date'][$j]['date']."</td>";
+									echo "<td>".$mongodb[$i]['price_date'][$j]['price']."</td>";
+									$j++;
+								}
+								echo "</tr>";
+								$i++;
+								$j = 0;
+							}
+						?>
+					</table>
+					<?php
+					//var_dump($mongodb);
+
+
+
+					?>
 				</div>
 
 				<div class="border col-sm-3" style="background-color:pink;">

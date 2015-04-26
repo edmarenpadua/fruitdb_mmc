@@ -48,7 +48,6 @@ foreach ($cursor as $doc) {
 	$mongodb[$fruit_ctr]['name'] = $doc['name'];
 	$mongodb[$fruit_ctr]['quantity'] = $doc['quantity'];
 	$mongodb[$fruit_ctr]['distributor'] = $doc['distributor'];
-	//echo 'Fruit Name: '.$name.'<br>Fruit Quantity: '.$qty.'<br>Distributor: '.$distributor."<br/>";
 
 	//find the price changes using referencing through fruit_id
 	$fruit_price_query = array('fruit_id' => $id);
@@ -58,17 +57,13 @@ foreach ($cursor as $doc) {
 	    // do something to each document
 		$mongodb[$fruit_ctr]['price_date'][$fp_ctr]['price'] = $doc2['price'];
 		$mongodb[$fruit_ctr]['price_date'][$fp_ctr]['date'] = $doc2['date'];
-		//echo '<br>Price: '.$price.'<br>Date: '.$date."<br/>";
-
 		$fp_ctr++;
 	}
-	//$mongodb[$fruit_ctr]['price_date']['hi'] = "hello";
-
 	$fruit_ctr++;
 	$fp_ctr = 0;
 }
 
-var_dump($mongodb);
+//var_dump($mongodb);
 
 
 ?>
