@@ -66,8 +66,8 @@ foreach ($cursor as $doc) {
 	EDIT on fruit DB
 */
 
-if(isset($_GET["edit"])) {
-	$id = $_GET["record_id"];
+if(isset($_POST["edit"])) {
+	$id = $_POST["record_id"];
 	//$id_query = array('_id' => new MongoId($id));
 
  	$fruit = array();
@@ -79,13 +79,14 @@ if(isset($_GET["edit"])) {
  	$c1->remove(array('_id' => new MongoId($id)));
 	//add to fruit collection
 	$c1->update(
-	    array("_id" => $id),
+	    array("_id" => new MongoId($id)),
 	    $fruit,
 	    array("upsert" => true)
 	);
 
 	//var_dump($fruit);
 	//var_dump($c1->findOne(array("name" => "Mangosteen")));
+	header("location: index.php");
 }
 
 
@@ -94,14 +95,16 @@ if(isset($_GET["edit"])) {
 	DELETE on fruit DB
 */
 
-if(isset($_GET["delete"])) {
-	$id = $_GET["record_id"];
+if(isset($_POST["delete"])) {
+	$id = $_POST["record_id"];
 	$id_query = array('_id' => new MongoId($id));
 
 //$id_query = array('name' => "Mangosteen");
 	//$cursor = $c1->find($id_query);
 	$c1->remove($id_query);
+	echo $id;
 	//var_dump($_GET["record_id"]);
+	header("location: index.php");
 }
 
 ?>
