@@ -1,12 +1,18 @@
+<?php
+require_once("mongodb_connect.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 	<title>FruitDB MMC</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 
 	</head>
 	
@@ -124,7 +130,51 @@
 
 				<div class="border col-sm-9" style="background-color:lightcyan;">
 					<h4>mongoDB</h4>
-					
+					<table class="table table-striped table-hover">
+						<?php
+						//var_dump($mongodb);
+							$i = 0; $j = 0;
+							if (count($mongodb)==0)
+								echo "<label><h4>Nothing to display</h4></label>";
+							else
+								echo "<th>Name</th><th>Quantity</th><th>Distributor</th>";
+								echo "<th>Price</th><th>Date</th><th>View Price History</th>";
+								echo "<th>Edit</th><th>Delete</th>";
+							while ($i != count($mongodb)){
+								echo "<tr class = 'active'>";
+								echo "<td>".$mongodb[$i]['id']."</td>";
+								echo "<td>".$mongodb[$i]['name']."</td>";
+								echo "<td>".$mongodb[$i]['quantity']."</td>";
+								echo "<td>".$mongodb[$i]['distributor']."</td>";
+								$latest = count($mongodb[$i]['price_date']);
+								echo "<td>".$mongodb[$i]['price_date'][$latest-1]['price']."</td>";
+								echo "<td>".$mongodb[$i]['price_date'][$latest-1]['date']."</td>";
+								echo "<td>".$mongodb[$i]['id']."</td>";
+
+						echo "<form action='' validate method='get'>";
+								echo "<input type='hidden' name='record_id' class='btn btn-default' value='".$mongodb[$i]['id']."'/>";
+								echo "<td><input type='submit' name='edit' value='Edit'  class='btn btn-default' /></td>";
+								echo "<td><input type='submit' name='delete' value='Delete' class='btn btn-default' /></td>";
+								//var_dump($mongodb[$i]['price_date']);
+								// while($j != count($mongodb[$i]['price_date']) && count($mongodb[$i]['price_date']) > 0){
+								// 	echo "<td>".$mongodb[$i]['price_date'][$j]['date']."</td>";
+								// 	echo "<td>".$mongodb[$i]['price_date'][$j]['price']."</td>";
+								// 	$j++;
+								// }
+								echo "</tr>";
+								$i++;
+								$j = 0;
+							}
+							var_dump($mongodb);
+						?>
+					</form>
+					</table>
+					<?php
+					//var_dump($mongodb);
+
+
+
+					?>
 				</div>
 
 				<div class="border col-sm-3" style="background-color:lavenderblush;">
