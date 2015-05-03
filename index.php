@@ -165,6 +165,7 @@ require_once("mongodb/mongodb_connect.php");
 								$i++;
 								$j = 0;
 							}
+							var_dump($mongodb);
 						?>
 					</form>
 					</table>

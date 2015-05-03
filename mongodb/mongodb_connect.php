@@ -66,39 +66,28 @@ foreach ($cursor as $doc) {
 	EDIT on fruit DB
 */
 
-//if(isset($_POST["edit"])) {
-/*	$id_query = array('name' => 'Apple');
+if(isset($_GET["edit"])) {
+	$id = $_GET["record_id"];
+	//$id_query = array('_id' => new MongoId($id));
 
-	//echo $id_query;
-
-	$cursor = $c1->find($id_query);
-
-	foreach ($cursor as $doc) {
-	    var_dump($doc['_id']);
-	}*/
-
-	echo "string";
-
-	//echo $cursor;
-
- 	/*$fruit = array();
+ 	$fruit = array();
  	$fruit_price = array();
+ 	$fruit['name'] = "Mangosteen";//$_POST['name_edit'];
+ 	$fruit['quantity']  = "1000";//$_POST['quantity_edit'];
+ 	$fruit['distributor']  = "Summer Love";//$_POST['distributor_edit'];
 
- 	$fruit['name'] = $_POST['name'];
- 	$fruit['quantity']  = $_POST['quantity'];
- 	$fruit['distributor']  = $_POST['distributor'];
-
+ 	$c1->remove(array('_id' => new MongoId($id)));
 	//add to fruit collection
-	$c1->insert($fruit);
+	$c1->update(
+	    array("_id" => $id),
+	    $fruit,
+	    array("upsert" => true)
+	);
 
- 	$fruit_price['fruit_id'] = (string)$fruit['_id'];
- 	$fruit_price['price']  = $_POST['price'];
- 	$fruit_price['date']  = date("m-d-Y");*/
-	//add to fruit_price collection
-	//$c2->insert($fruit_price);
-//}
+	//var_dump($fruit);
+	//var_dump($c1->findOne(array("name" => "Mangosteen")));
+}
 
-//var_dump($mongodb);
 
 
 /*
@@ -109,6 +98,7 @@ if(isset($_GET["delete"])) {
 	$id = $_GET["record_id"];
 	$id_query = array('_id' => new MongoId($id));
 
+//$id_query = array('name' => "Mangosteen");
 	//$cursor = $c1->find($id_query);
 	$c1->remove($id_query);
 	//var_dump($_GET["record_id"]);
