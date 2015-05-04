@@ -101,10 +101,10 @@ if(isset($_POST["delete"])) {
 
 //$id_query = array('name' => "Mangosteen");
 	//$cursor = $c1->find($id_query);
-	$c1->remove($id_query);
-	echo $id;
-	//var_dump($_GET["record_id"]);
-	header("location: index.php");
+	//$c1->remove($id_query);
+	//echo $id;
+	var_dump($_POST["record_id"]);
+	//header("location: index.php");
 }
 
 ?>

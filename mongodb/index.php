@@ -66,10 +66,10 @@ require_once("mongodb_connect.php");
 								echo "<td>".$mongodb[$i]['id']."</td>";
 
 						echo "<form action='' validate method='post'>";
-								echo "<input type='hidden' name='record_id' class='btn btn-default' value='".$mongodb[$i]['id']."'/>";
+								//echo "<input type='hidden' name='record_id' class='btn btn-default' value='".$mongodb[$i]['id']."'/>";
 								echo "<td><input type='submit' name='edit' value='Edit'  class='btn btn-default' /></td>";
 								//echo "<td><input type='submit' name='delete' value='Delete' class='btn btn-default' /></td>";
-								echo "<td><a class='btn btn-danger' data-toggle='modal' data-target='#delete_fruit'>Delete</a></td>";
+								echo "<td><a class='open-delete_fruit btn btn-danger' data-toggle='modal' href='#delete_fruit' data-id='".$mongodb[$i]['id']."'>Delete</a></td>";
 								//var_dump($mongodb[$i]['price_date']);
 								// while($j != count($mongodb[$i]['price_date']) && count($mongodb[$i]['price_date']) > 0){
 								// 	echo "<td>".$mongodb[$i]['price_date'][$j]['date']."</td>";
@@ -82,7 +82,7 @@ require_once("mongodb_connect.php");
 						?>
 
 						<!-- DELETE MODAL -->
-						<div id="delete_fruit" class="modal fade" tabindex="-1" role="dialog">
+						<div id="delete_fruit" class="modal fade" tabindex="-1" >
 						    <div class="modal-dialog modal-sm">
 						        <div class="modal-content">
 						            <div class="modal-header">
@@ -94,6 +94,7 @@ require_once("mongodb_connect.php");
 						            </div>
 						            <div class="modal-footer">
 						                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						                <input type='text' name='record_id' id='record_id' value=''/>
 						                <input type='submit' name='delete' value='Delete' class='btn btn-danger' />
 						            </div>
 						        </div>
