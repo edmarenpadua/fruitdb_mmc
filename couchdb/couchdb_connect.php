@@ -26,7 +26,9 @@
 		if(isset($_POST["add"])){
 			addFruit($_POST["name"], $_POST["quantity"], $_POST["distributor"], $_POST["price"], $client);
 		}else if(isset($_POST["edit"])){
-			updateFruit($_POST["name"], $_POST["quantity"], $_POST["distributor"], $_POST["price"], $client);
+			updateFruit($_POST["record_id"], $_POST["name"], $_POST["quantity"], $_POST["distributor"], $_POST["price"], $client);
+		}else if(isset($_POST["delete"])){
+			deleteFruit($_POST["record_id"],$client);
 		}
 	}
 
@@ -66,22 +68,9 @@
 	}
 	
 
-	function updateFruit($var){
-		$id = "0";
-		//getting database information
-		try {
-			$info = $client->getDatabaseInfos();
-		} catch (Exception $e) {
-			echo "Error:".$e->getMessage()." (errcode=".$e->getCode().")\n";
-			exit(1);
-		}
-		print_r($info);
-
-		$name = "mango";
-		$quantity = 6;
-		$distributor = "gabby";
-		$price = 11.5;
-		$date = "04/24/2015";
+	function updateFruit($id, $name, $quantity, $distributor, $price, $client){
+		
+		$date = date("m/d/Y");
 		
 		$fruit = $client->getDoc($id);
 		
@@ -113,6 +102,11 @@
 		        exit(1);
 		}
 		
+	}
+
+	function deleteFruit($id, $client){
+		$fruit = $client->getDoc($id);
+		$client->deleteDoc($fruit);
 	}
 	
 	//getting database information
