@@ -1,26 +1,50 @@
-# [Start Bootstrap](http://startbootstrap.com/) - [Freelancer](http://startbootstrap.com/template-overviews/freelancer/)
+# fruitdb_mmc
+A web application using MySQL, MongoDB, and CouchDB
 
-[Freelancer](http://startbootstrap.com/template-overviews/freelancer/) is a one page freelancer portfolio theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/). This theme features several content sections, a responsive portfolio grid with hover effects, full page portfolio item modals, and a working PHP contact form.
+########## MYSQL DB STUFF ##########
+SCHEMA:
+####################################
 
-## Getting Started
+########## COUCH DB STUFF ##########
+SCHEMA:
+####################################
 
-To use this theme, choose one of the following options to get started:
-* Download the latest release on Start Bootstrap
-* Fork this repository on GitHub
+########## MONGO DB STUFF ##########
+Set up for MongoDB:
+1. Make sure that you have MongoDB running as Windows Service
+2. Download the latest PHP Driver compatible for your machine
+3. Unzip the archive and put php_mongo.dll in your PHP extension directory ("ext" by default) and add the following line to your php.ini file: extension=php_mongo.dll
+4. Restart your XAMP/WAMPSERVER
 
-## Bugs and Issues
+DB Set up:
+1. create a db named 'fruit'
+2. create a collection named 'fruit'
+3. insert a document of your liking to collection 'fruit'
+4. create a collection named 'fruit_price'
+3. insert a document of your liking to collection 'fruit'
 
-Have a bug or an issue with this theme? [Open a new issue](https://github.com/IronSummitMedia/startbootstrap-freelancer/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/freelancer/).
+fruit.fruit.find() 			##to view all fruits in the fruit collection
+fruit.fruit_price.find() 	##to view all fruits in the fruit collection
 
-## Creator
+SCHEMA EXAMPLE:
+#collection: fruit
+{
+	_id : "553a599c3dddc0350584a994",
+	name: "mango",
+	quantity: "35",
+	distributor: "SM"
+}
 
-Start Bootstrap was created by and is maintained by **David Miller**, Managing Parter at [Iron Summit Media Strategies](http://www.ironsummitmedia.com/).
+#collection: fruit_price
+{
+	_id : "443a678c3dddc0350584a545",
+	fruit_id: "553a599c3dddc0350584a994",
+	price: "350.00",
+	date: "04-25-2015"
+}
 
-* https://twitter.com/davidmillerskt
-* https://github.com/davidtmiller
+#fruit_price collection is referenced to fruit
+collection using fruit_id
 
-Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+####################################
 
-## Copyright and License
-
-Copyright 2013-2015 Iron Summit Media Strategies, LLC. Code released under the [Apache 2.0](https://github.com/IronSummitMedia/startbootstrap-freelancer/blob/gh-pages/LICENSE) license.
