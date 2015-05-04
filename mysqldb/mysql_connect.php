@@ -6,7 +6,7 @@ Do stuff
     $row2 = [];
 
     //Change the last parameter to "fruit_db"
-    $con = mysqli_connect("localhost", "root", "", "cmsc191");
+    $con = mysqli_connect("localhost", "root", "", "fruit_db");
     
     if(mysqli_connect_error()) echo "Connection Fail";
     else {
