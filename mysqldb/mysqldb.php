@@ -21,6 +21,16 @@
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/fonts.css" rel="stylesheet" type="text/css">
 
+    <!--Script for delete confirmation-->
+    <script type="text/javascript">
+        function ConfirmDelete(){
+            var d = confirm('Do you really want to delete data?');
+            if(d == false){
+                return false;
+            }
+        }
+    </script>
+
 </head>
 
 <body id="page-top" class="index">
@@ -54,6 +64,8 @@
         </div>
     </div>
 
+
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -85,9 +97,11 @@
         <!-- /.container-fluid -->
     </nav>
 
+
     <!-- Header -->
 
     <!-- Portfolio Grid Section -->
+    
     <section id="portfolio">
         <div class="container">
             <div class="row">
@@ -112,93 +126,121 @@
                             </form>
                         </div>
                     </div>
-                    <div class="border col-sm-8 text-center" style="background-color:lavenderblush;"> 
+                    
+                    <div class="border col-sm-8 text-center" style="background-color:lavenderblush;">
+
                         <br>
                         <h3>EDIT OR DELETE FRUIT</h3>
-
-                        <table class="table table-striped table-hover">
+                       
+                        <table class="table table-striped table-hover col-sm-10">
                             <?php
-                                //var_dump($row1);
-                                //var_dump($row2);
-
-                            
                                 $ctr = 0;
                                 
-                                if (count($row1)>0)
+                                if (count($row1)>0);
                                     echo "<label><h4>MySQL Result</h4></label>";
-                                //Enter codes for the column heading; fruitname, qty, price/current price
-                                echo "<tr class = 'active' >";
-                                    echo "<th>Fruit Name </th> <th> Quantity </th> <th> Distributor </th> <th> Current Price </th> <th> Date </th><th></th><th></th>";
-                                echo "</tr>";
+                                    
+                                    //Enter codes for the column heading; fruitname, qty, price/current price
+                                    echo "<tr class = 'active' >";
+                                        echo "<th>Fruit Name </th> <th> Quantity </th> <th> Distributor </th> <th> Current Price </th> <th> Date </th><th></th><th></th>";
+                                    echo "</tr>";
 
                                 
-                                while ($ctr != count($row1)){
-                                    $ctr2 = 0;
-                                    echo "<tr class = 'active' >";
-                                    echo "<td><b>".strtoupper($row1[$ctr]['fruitname'])."</b></td>";
-                                    echo "<td>".$row1[$ctr]['qty']."</td>";
-                                    echo "<td>".$row1[$ctr]['distributor']."</td>";
-                                    echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2]['price']."</td>";
-                                    echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2++]['date']."</td>";
+                                    while ($ctr != count($row1)){
+                                        $ctr2 = 0;
+                                        echo "<tr class = 'active' >";
+                                        echo "<td><b>".strtoupper($row1[$ctr]['fruitname'])."</b></td>";
+                                        echo "<td>".$row1[$ctr]['qty']."</td>";
+                                        echo "<td>".$row1[$ctr]['distributor']."</td>";
+                                        echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2]['price']."</td>";
+                                        echo "<td class='col-lg-5'>".$row2[$row1[$ctr]['fruitname']][$ctr2++]['date']."</td>";
+
+                                        //Nested table for prices
                                         if (count($row2)>1){
-                                            echo "<td><a> See previous prices</a>";
+                                            echo "<td class='col-lg-5'><b>Previous prices</b>";
                                             echo "<table>"; 
                                             echo "<tr><th>Price</th><th>Date</th></tr>";
                                             while ($ctr2 != count($row2[$row1[$ctr]['fruitname']])){
-
                                                 echo "<tr>";
                                                 echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2]['price']."</td>";
-                                                echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2]['date'];
-                                                echo "<tr>";
-                                                
+                                                echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2]['date']."</td>";
+                                                echo "</tr>";
                                                 $ctr2++;
                                             }
                                             echo "</table>";
                                         }
-                                    echo "</td>";
+                                        echo "</td>";
 
-                                    
-                                        //")<div style='float:right;'><input type = 'submit' name='submit' value='Delete'  class='btn btn-default' id='".$row1[$ctr]['fruitname']."' /></div>".
-                                        //")<div style='float:right;'><input type = 'submit' name='submit' value='Delete'  class='btn btn-default' id='deleteButton' data='".$row1[$ctr]['fruitname']."' /></div>".
-                                        /*"<div style='float:right;'>".
-                                        //"<form action='' validate method='get'>".
-                                            "<input type = 'submit' name='submit' value='Edit'  class='btn btn-default' /></div>".
-                                            "<div style='float:right;'><input type = 'submit' name='delete' value='Delete'  class='btn btn-default' id='".$row1[$ctr]['fruitname']."'/></div>".
-                                        //"</form>".
-                                        "</td></tr>";*/
-                                    //echo "<tr class = 'active'><td>"."<b>Description: </b>".($row1[$ctr]['coursedesc']."</td><td></td></tr>"); 
-                                    //echo "<tr><td><br></br></td><td></td></tr>";
-                                    echo "<td>";         
-                                    echo "<form action='' validate method='post'>";
-                                        echo "<input type='hidden' name='record_id' class='btn btn-default' value='".$row1[$ctr]["fruitname"]."'/>";
-                                       
-                                        echo "<div class='control-group' style='float:right;'>";
-                                        echo "  <a href='#myModal' class='btn btn-default' data-toggle='modal' aria-label='Left Align'>";
-                                        echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
-
-                                        echo "<button type='button' class='btn btn-default'  data-toggle='modal' data-target='#delete_fruit' aria-label='Left Align' >";
-                                        echo "  <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>";
-                                        echo "</button>";
-                                        echo "</div>";
+                                        echo "<td>";         
+                                        echo "<form action='mysqldb.php' validate method='POST' onSubmit='return ConfirmDelete();'>";
+                                            // Hidden  for id storage
+                                            echo "<input type='hidden' name='record_id' class='btn btn-default' id='".$row1[$ctr]["fruitname"]."' value='".$row1[$ctr]["fruitname"]."'/>";
+                                            echo "<div class='control-group' style='float:right;'>";
+                                            //echo "   <input type='submit' class='btn btn-default' value='Edit' aria-label='Left Align'/>";
+                                            echo "  <a href='#myModal' class='btn btn-default' data-toggle='modal' aria-label='Left Align'>";
+                                            echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
 
 
-                                        //echo "<td><input type='submit' name='edit' value='Edit'  class='btn btn-default' data-toggle='modal' data-target='#edit_fruit'/></td>";
-                                        //echo "<td><p> id =". $row1[$ctr]["fruitname"]."</p><a class='btn btn-danger' data-toggle='modal' data-target='#delete_fruit'>Delete</a></td>";
-                                        echo "</form></tr>";
-                                    echo "</td>";
-                                    $ctr++;
-                                }
+                                            echo "<button type='submit' name='delete' class='btn btn-default' value='Delete' aria-label='Left Align' id=''/>";
+                                            echo "  <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>";
+                                            echo "</button>";
+                                            echo "</div>";
+
+                                        /*   //Link for Update Modal
+                                            echo "<div class='control-group' style='float:right;'>";
+                                            echo "  <a href='#myModal' class='btn btn-default' data-toggle='modal' aria-label='Left Align'>";
+                                            echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
+
+                                            //Button for Delete Button Modal
+                                            echo "<button type='button' class='btn btn-default'  data-toggle='modal' data-target='#delete_fruit' aria-label='Left Align' id='".$row1[$ctr]["fruitname"]."'>";
+                                            echo "  <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>";
+                                            echo "</button>";
+                                            echo "</div>";
+
+                                        */
+                                        echo "</td>";
+
+                                        echo "</form>";
+                                        echo "</tr>";
+                                        $ctr++;
+                                    }
+                                
                             ?>      
                         </table>
 
-
-                        
                         <!-- <hr class="star-primary"> -->
                     </div>
                </div>
             </div>
         </div>
     </section>
+
+                         <!-- DELETE MODAL -->
+                        <div id="delete_fruit" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">DELETE FRUIT DATA</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete this fruit?</p>
+                                        <?php //echo "<p> Here it is".$row1[$ctr]["fruitname"]."</p>"; ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action='mysqldb.php' validate method='post'>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <input type='submit' name='delete' value='Delete' class='btn btn-danger' />
+                                            
+                                        </form>
+                                    <!--  From webSource 
+                                            <a class="btn btn-danger btn-ok" name='delete' value='Delete'>Delete</a>
+                                    -->    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
 
 
     <!-- Footer -->
@@ -223,25 +265,7 @@
     </div>
 
     <!-- Portfolio Modals -->
-    <!-- DELETE MODAL -->
-                        <div id="delete_fruit" class="modal fade" tabindex="-1" role="dialog">
-                            <div class="modal-dialog modal-sm">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">DELETE FRUIT DATA</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Are you sure you want to delete this fruit?</p>
-                                        <?php echo "<p> Here it is".$row1[$ctr]["fruitname"]."</p>";?>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        <input type='submit' name='delete' value='Delete' class='btn btn-danger' />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+   
 
 
 
@@ -253,6 +277,7 @@
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
     <script src="js/freelancer.js"></script>
+   
 
 </body>
 
