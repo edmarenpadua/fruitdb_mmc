@@ -13,13 +13,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CMSC 191 Mongodb</title>
-
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/fruit_mmc.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/fonts.css" rel="stylesheet" type="text/css">
+
+    <title>CMSC 191 Mongodb</title>
+    <link rel="shortcut icon" href="img/portfolio/mongologo.png">
+
 
 </head>
 
@@ -89,7 +90,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">MongoDB Fruit MMC</a>
+
+                
+
+                <span><a class="navbar-brand" href="#page-top">MongoDB Fruit MMC</a></span> 
+                <span><img id="logo" src="img/portfolio/mongologo.png" alt="logo"> </span>
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -97,6 +103,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
                         <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="mysqldb.php">MySQLDB</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="couchdb.php">CouchDB</a>
+                    </li>
                     </li>
                     <li class="page-scroll">
                         <a href="index.php">Home</a>
@@ -123,43 +136,19 @@
                 <div class="col-lg-12 text-center">
                     <div class="border col-sm-3 text-center" style="background-color:lavender;">
                         <h3>ADD FRUIT</h3>
+
                         <!-- <hr class="star-primary"> -->
                         <div class="control-group">
                             <form name="" id="" validate method="post" action="">
-                                <fieldset>
-                                    <div class="row control-group">
-                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                            <label>Fruit name</label>
-                                            <input class="form-control" type="text" placeholder="Fruit name" name="name" required="required"/>
-                                        </div>
-                                    </div>
-                                    <div class="row control-group">
-                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                            <label>Quantity</label>
-                                            <input class="form-control" type="text" placeholder="Quantity" name="quantity" required="required"/>
-                                        </div>
-                                    </div>
-                                    <div class="row control-group">
-                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                            <label>Distributor</label>
-                                            <input class="form-control" type="text" placeholder="Distributor" name="distributor" required="required"/>
-                                        </div>
-                                    </div>
-                                    <div class="row control-group">
-                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                            <label>Price</label>
-                                            <input class="form-control" type="text" placeholder="Price" name="price" required="required"/>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-xs-11">
-                                            <br>
-                                            <button type="submit" class="btn btn-success btn-md pull-right" id="submit" name="submit">Submit</button>
-                                        </div>
-                                    </div>
 
-                                </fieldset>
-                            </form>
+                            <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" required="required"/></div>
+                            <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" required="required"/></div>
+                            <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" required="required"/></div>
+                            <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" required="required"/></div>
+                            <br>
+                            <div style="float:right;"><input type = "submit" name="submit" value="Add fruit data"  class="btn btn-default" /></div>
+                            <br>
+
                         </div>
                     </div>
                     <div class="border col-sm-9 text-center" style="background-color:lavenderblush;">
