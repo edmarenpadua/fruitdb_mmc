@@ -38,7 +38,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">CMSC 191 Fruit MMC</a>
+                <div>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <img id="logo" src="img/profilelogo.png" alt="logo">
+                        </li>
+
+                    </ul>
+                    <a class="navbar-brand" href="#page-top">&nbsp;&nbsp;CMSC 191 Fruit MMC</a>
+                </div> 
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
