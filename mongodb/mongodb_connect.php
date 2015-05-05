@@ -95,15 +95,12 @@ if(isset($_POST["edit"])) {
 	DELETE on fruit DB
 */
 
-if(isset($_POST["delete"])) {
-	$id = $_POST["record_id"];
-	$id_query = array('_id' => new MongoId($id));
+if(isset($_GET["delete"])) {
+	$id = $_GET["delete_this"];
+	//$id_query = array('_id' => new MongoId($id));
 
-//$id_query = array('name' => "Mangosteen");
-	//$cursor = $c1->find($id_query);
-	//$c1->remove($id_query);
-	//echo $id;
-	var_dump($_POST["record_id"]);
+	echo "<br><br><br><br><br><br>HEYYYYYYYY";
+	var_dump($id);
 	//header("location: index.php");
 }
 

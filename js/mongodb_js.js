@@ -1,7 +1,20 @@
 $(document).on("click", ".open-delete_fruit", function () {
      var myId = $(this).data('id');
-     $(".modal-footer #delete_fruit").val( myId );
-     // As pointed out in comments, 
-     // it is superfluous to have to manually call the modal.
-     // $('#addBookDialog').modal('show');
+     //alert(myId);
+     $("#delete_this").val(myId);
+});
+
+$(document).ready(function () {
+    $("#delete").click(function(){
+         $.ajax({
+            type: "GET",
+            url: "index.php", //process to mail
+            data: "id = 10",
+            success: function () {
+            },
+            error: function(){
+                alert("failure");
+            }
+        });
+    });
 });
