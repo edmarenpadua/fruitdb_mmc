@@ -1,3 +1,7 @@
+<?php
+    require_once("couchdb/couchdb_connect.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,11 +42,36 @@
                             <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" required="required"/></div>
                             <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" required="required"/></div>
                             <br>
+                    </form>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="delete_fruit" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">DELETE FRUIT DATA</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this fruit?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <form name="del_fruit" id="" validate method="get" action="index.php">
+                        <input type="hidden" id= "delete_this" value = "">
+                        <input type="submit" id= "delete" class="btn btn-danger" value ="Yes, delete"/>
+                    </form>
                 </div>
 
             </div>
@@ -92,32 +121,122 @@
             </div>
             <div class="row row-centered">
                 <div class="col-lg-12 text-center">
-                    <div class="border col-sm-4 text-center" style="background-color:lavender;">
-                        <br>
+                    <div class="border col-sm-3 text-center" style="background-color:lavender;">
                         <h3>ADD FRUIT</h3>
                         <!-- <hr class="star-primary"> -->
                         <div class="control-group">
                             <form name="" id="" validate method="post" action="">
-                            <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" required="required"/></div>
-                            <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" required="required"/></div>
-                            <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" required="required"/></div>
-                            <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" required="required"/></div>
-                            <br>
-                            <div style="float:right;"><input type = "submit" name="submit" value="Add fruit data"  class="btn btn-default" /></div>
+                                <fieldset>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Fruit name</label>
+                                            <input class="form-control" type="text" placeholder="Fruit name" name="name" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Quantity</label>
+                                            <input class="form-control" type="text" placeholder="Quantity" name="quantity" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Distributor</label>
+                                            <input class="form-control" type="text" placeholder="Distributor" name="distributor" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Price</label>
+                                            <input class="form-control" type="text" placeholder="Price" name="price" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-11">
+                                            <br>
+                                            <button type="submit" class="btn btn-success btn-md pull-right" id="submit" name="add">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
-                    <div class="border col-sm-6 text-center" style="background-color:lavenderblush;">
-                        <br>
-                        <h3>EDIT OR DELETE FRUIT</h3>
-                        <div class="control-group" style="float:right;">
-                            <a href="#myModal" class="btn btn-default" data-toggle="modal" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </a>
-                            <button type="button" class="btn btn-default"  aria-label="Left Align">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
-  
-                       
+                    <div class="border col-sm-9 text-center" style="background-color:lavenderblush;">
+                        <h3>FRUIT DETAILS</h3>
+                        <div class="control-group col-sm-12" style="float:right;">
+                        <table class="table table-striped table-hover">
+                            <?php
+                                $i = 0; $j = 0;
+                                $size = count($couchdb);
+                                if ($size==0)
+                                    echo "<label><h4>Nothing to display</h4></label>";
+                                else
+                                    echo "<th class = 'text-center'>Name</th><th class = 'text-center'>Quantity</th><th class = 'text-center'>Distributor</th>";
+                                    echo "<th class = 'text-center'>Price</th><th class = 'text-center'>Date</th>";
+                                    echo "<th class = 'text-center'>Edit</th><th class = 'text-center'>Delete</th>";
+                                while ($i != $size){
+                                    $fruit = $client->getDoc($couchdb[$i]->id);
+                                    echo "<tr class = 'success'>";
+                                    echo "<td>".$fruit->name."</td>";
+                                    echo "<td>".$fruit->quantity."</td>";
+                                    echo "<td>".$fruit->distributor."</td>";
+
+                                    $price_list = $fruit->price_list;
+                                    $latest = count($price_list)-1;
+                                    echo "<td>".$price_list[$latest]->price."</td>";
+                                    echo "<td>".$price_list[$latest]->date."</td>";
+
+/*                                    while($j != count($mongodb[$i]['price_date']) && count($mongodb[$i]['price_date']) > 0){
+                                        echo "<td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
+                                     //echo "<td>".$mongodb[$i]['price_date'][$j]['date']."</td>";
+                                     //echo "<td>".$mongodb[$i]['price_date'][$j]['price']."</td>";
+                                     $j++;
+                                    }*/
+
+                                echo "<td><a href='#myModal' class='btn btn-info' data-toggle='modal' aria-label='Left Align'>";
+                                    echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
+                                echo "</a></td>";
+                                echo "<td><a href='#delete_fruit' class='open-delete_fruit btn btn-danger' data-toggle='modal' aria-label='Left Align' data-id='".$fruit->_id."'>";
+                                    echo "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>";
+                                echo "</a></td>";
+                                    //echo "<input type='hidden' name='record_id' class='btn btn-default' value='".$mongodb[$i]['id']."'/>";
+                                    //echo "<td><input type='submit' name='edit' value='Edit'  class='btn btn-default' /></td>";
+                                    //echo "<td><input type='submit' name='delete' value='Delete' class='btn btn-default' /></td>";
+                                    //echo "<td><a class='open-delete_fruit btn btn-danger' data-toggle='modal' href='#delete_fruit' data-id='".$mongodb[$i]['id']."'>Delete</a></td>";
+                                   
+                                   echo "</tr>";
+                                                         
+                                    if (count($price_list) > 1){
+                                        while($j != count($price_list)){
+                                             echo "<tr class = 'active'>";
+                                             echo "<td></td><td></td>";
+                                             if($j == 0) 
+                                                echo "<td>Previous Prices:</td>";
+                                             else
+                                                echo "<td></td>";
+                                                echo "<td>".$price_list[$j]->price."</td>";
+                                                echo "<td>".$price_list[$j]->date."</td>";
+                                             $j++;
+                                             echo "<td></td><td></td>";
+                                             echo "</tr>";
+                                        }
+                                    }
+                                    else{
+                                         echo "<tr class = 'active'>";
+                                         echo "<td></td><td></td><td></td><td>";
+                                         echo "</tr>";                                     
+                                    }
+                                    $i++;
+                                    $j = 0;
+                                    
+                                
+                                }
+                            ?>
+
+
+                        </table>
+                     
                         </div>
                         <!-- <hr class="star-primary"> -->
                     </div>
@@ -158,6 +277,7 @@
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
     <script src="js/freelancer.js"></script>
+    <script src="js/couchdb_js.js"></script>
 
 </body>
 
