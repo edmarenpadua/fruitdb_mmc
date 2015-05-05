@@ -91,19 +91,22 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                
-
-                <span><a class="navbar-brand" href="#page-top">MongoDB Fruit MMC</a></span> 
-                <span><img id="logo" src="img/portfolio/mongologo.png" alt="logo"> </span>
+                <div>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <img id="logo" src="img/portfolio/mongologo.png" alt="logo">
+                        </li>
+                        <li class="page-scroll">
+                            <a class="navbar-brand" href="#page-top">MongoDB Fruit MMC</a>
+                        </li>
+                    </ul>
+                </div> 
 
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
                     <li class="page-scroll">
                         <a href="mysqldb.php">MySQLDB</a>
                     </li>
