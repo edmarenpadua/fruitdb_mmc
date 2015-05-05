@@ -13,14 +13,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CMSC 191 Mysqldb</title>
-
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/fruit_mmc.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/fonts.css" rel="stylesheet" type="text/css">
 
+    <title>CMSC 191 Mysqldb</title>
+    <link rel="shortcut icon" href="img/portfolio/mysqllogo.png">
     <!--Script for delete confirmation-->
     <script type="text/javascript">
         function ConfirmDelete(){
@@ -30,7 +30,6 @@
             }
         }
     </script>
-
 </head>
 
 <body id="page-top" class="index">
@@ -45,26 +44,27 @@
                     <h4 class="modal-title">Edit Fruit Data</h4>
                 </div>
 
-                <div class="modal-body">
-                    <form name="" id="" validate method="post" action="mysqldb.php">
-                            <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" required="required"/></div>
-                            <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" required="required"/></div>
-                            <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" required="required"/></div>
-                            <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" required="required"/></div>
-                            <br>
-                    </form>
-                </div>
+                <form name="" id="" validate method="post" action="mysqldb.php">
+                    <div class="modal-body">
+                        <input type='hidden' id='hiddenId' name='record_id' class='btn btn-default'/>
+                        <input type='hidden' id='editDate' name='date' class='btn btn-default'/>
+                        <div class="form-group">Name:<input class="form-control" id="editId" type="text" placeholder="e.g. Mango" name="name" required="required"/></div>
+                        <div class="form-group">Quantity:<input class="form-control" id="editQuantity" type="text" placeholder="e.g. 5" name="quantity" required="required"/></div>
+                        <div class="form-group">Distributor:<input class="form-control" id="editDistributor" type="text" placeholder="e.g. Yeah" name="distributor" required="required"/></div>
+                        <div class="form-group">Current Price:<input class="form-control" id="editPrice" type="text" placeholder="e.g. 10.00" name="price" required="required"/></div>
+                        <br>
+                        
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" name="edit" value="Save changes" class="btn btn-primary name"/>
+                    </div>
+                </form>
 
             </div>
         </div>
     </div>
-
-
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -77,7 +77,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">MysqlDB Fruit MMC</a>
+                <div>
+                    <span>
+                        <img id="logo" src="img/portfolio/mysqllogo.png" alt="logo">
+                    </span>
+                    <span>
+                        <a class="navbar-brand" href="#page-top">MysqlDB Fruit MMC</a>
+                    </span>
+                </div> 
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -85,6 +92,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
                         <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="couchdb.php">CouchDB</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="mongodb.php">MongoDB</a>
+                    </li>
                     </li>
                     <li class="page-scroll">
                         <a href="index.php">Home</a>
@@ -97,11 +111,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-
-    <!-- Header -->
-
-    <!-- Portfolio Grid Section -->
-    
+    <!-- Portfolio Grid Section -->    
     <section id="portfolio">
         <div class="container">
             <div class="row">
@@ -111,43 +121,69 @@
             </div>
             <div class="row row-centered">
                 <div class="col-lg-12 text-center">
-                    <div class="border col-sm-4 text-center" style="background-color:lavender;">
+                    <div class="border col-sm-3 text-center" style="background-color:lavender;">
                         <br>
                         <h3>ADD FRUIT</h3>
                         <!-- <hr class="star-primary"> -->
                         <div class="control-group">
                             <form name="" id="" validate method="post" action="mysqldb.php">
-                            <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" required="required"/></div>
-                            <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" required="required"/></div>
-                            <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" required="required"/></div>
-                            <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" required="required"/></div>
-                            <br>
-                            <div style="float:right;"><input type = "submit" name="submit" value="Add fruit data"  class="btn btn-default" /></div>
+                                <fieldset>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Fruit name</label>
+                                            <input class="form-control" type="text" placeholder="Fruit name" name="name" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Quantity</label>
+                                            <input class="form-control" type="text" placeholder="Quantity" name="quantity" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Distributor</label>
+                                            <input class="form-control" type="text" placeholder="Distributor" name="distributor" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Price</label>
+                                            <input class="form-control" type="text" placeholder="Price" name="price" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-11">
+                                            <br>
+                                            <button type="submit" class="btn btn-success btn-md pull-right" id="submit" name="submit">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
                             </form>
                         </div>
                     </div>
                     
-                    <div class="border col-sm-8 text-center" style="background-color:lavenderblush;">
+                    <div class="border col-sm-9 text-center" style="background-color:lavenderblush;">
 
                         <br>
-                        <h3>EDIT OR DELETE FRUIT</h3>
-                       
+                        <h3>FRUIT DETAILS</h3>
+                        <div class="control-group col-sm-12" style="float:right;">
                         <table class="table table-striped table-hover col-sm-10">
                             <?php
                                 $ctr = 0;
-                                
-                                if (count($row1)>0);
-                                    echo "<label><h4>MySQL Result</h4></label>";
-                                    
-                                    //Enter codes for the column heading; fruitname, qty, price/current price
-                                    echo "<tr class = 'active' >";
-                                        echo "<th>Fruit Name </th> <th> Quantity </th> <th> Distributor </th> <th> Current Price </th> <th> Date </th><th></th><th></th>";
+                                if (count($row1)==0)
+                                    echo "<label><h4>Nothing to display</h4></label>";
+                                else{
+                                    echo "<tr>";
+                                    echo "<th class = 'text-center'>Name</th><th class = 'text-center'>Quantity</th><th class = 'text-center'>Distributor</th>";
+                                    echo "<th class = 'text-center'>Price</th><th class = 'text-center'>Date</th>";
+                                    echo "<th class = 'text-center'>Edit</th><th class = 'text-center'>Delete</th>";
                                     echo "</tr>";
-
                                 
                                     while ($ctr != count($row1)){
                                         $ctr2 = 0;
-                                        echo "<tr class = 'active' >";
+                                        echo "<tr class = 'success' >";
                                         echo "<td><b>".strtoupper($row1[$ctr]['fruitname'])."</b></td>";
                                         echo "<td>".$row1[$ctr]['qty']."</td>";
                                         echo "<td>".$row1[$ctr]['distributor']."</td>";
@@ -155,65 +191,51 @@
                                         echo "<td class='col-lg-5'>".$row2[$row1[$ctr]['fruitname']][$ctr2++]['date']."</td>";
 
                                         //Nested table for prices
-                                        if (count($row2)>1){
-                                            echo "<td class='col-lg-5'><b>Previous prices</b>";
-                                            echo "<table>"; 
-                                            echo "<tr><th>Price</th><th>Date</th></tr>";
-                                            while ($ctr2 != count($row2[$row1[$ctr]['fruitname']])){
-                                                echo "<tr>";
-                                                echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2]['price']."</td>";
-                                                echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2]['date']."</td>";
-                                                echo "</tr>";
-                                                $ctr2++;
-                                            }
-                                            echo "</table>";
-                                        }
-                                        echo "</td>";
-
-                                        echo "<td>";         
                                         echo "<form action='mysqldb.php' validate method='POST' onSubmit='return ConfirmDelete();'>";
                                             // Hidden  for id storage
                                             echo "<input type='hidden' name='record_id' class='btn btn-default' id='".$row1[$ctr]["fruitname"]."' value='".$row1[$ctr]["fruitname"]."'/>";
-                                            echo "<div class='control-group' style='float:right;'>";
+                                          
                                             //echo "   <input type='submit' class='btn btn-default' value='Edit' aria-label='Left Align'/>";
-                                            echo "  <a href='#myModal' class='btn btn-default' data-toggle='modal' aria-label='Left Align'>";
-                                            echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
+                                            echo "<td><a class='btn btn-default editClass' data-toggle='modal' aria-label='Left Align'";
+                                                echo " data-id='".$row1[$ctr]["fruitname"]."' data-quantity='".$row1[$ctr]["qty"]."' data-distributor='".$row1[$ctr]["distributor"]."' data-cprice='".$row2[$row1[$ctr]["fruitname"]][$ctr2-1]["price"]."' data-cdate='".$row2[$row1[$ctr]["fruitname"]][$ctr2-1]["date"]."'>";
+                                            echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
+                                            echo "</a></td>";
 
-
-                                            echo "<button type='submit' name='delete' class='btn btn-default' value='Delete' aria-label='Left Align' id=''/>";
+                                            echo "<td><button type='submit' name='delete' class='btn btn-default' value='Delete' aria-label='Left Align' id=''/>";
                                             echo "  <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>";
-                                            echo "</button>";
-                                            echo "</div>";
-
-                                        /*   //Link for Update Modal
-                                            echo "<div class='control-group' style='float:right;'>";
-                                            echo "  <a href='#myModal' class='btn btn-default' data-toggle='modal' aria-label='Left Align'>";
-                                            echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
-
-                                            //Button for Delete Button Modal
-                                            echo "<button type='button' class='btn btn-default'  data-toggle='modal' data-target='#delete_fruit' aria-label='Left Align' id='".$row1[$ctr]["fruitname"]."'>";
-                                            echo "  <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>";
-                                            echo "</button>";
-                                            echo "</div>";
-
-                                        */
-                                        echo "</td>";
-
+                                            echo "</button></td>";
                                         echo "</form>";
+
                                         echo "</tr>";
+
+                                        if (count($row2)>1){
+                                            while ($ctr2 != count($row2[$row1[$ctr]['fruitname']])){
+                                                echo "<tr class = 'active'>";
+                                                if($ctr2==1)
+                                                    echo "<td><b>Previous prices:</b></td>";
+                                                else
+                                                    echo "<td></td>";
+                                                echo "<td></td><td></td>";
+                                                echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2]['price']."</td>";
+                                                echo "<td>".$row2[$row1[$ctr]['fruitname']][$ctr2]['date']."</td>";
+                                                echo "<td><p></p></td> <td> </td>";
+                                                echo "</tr>";
+                                                $ctr2++;
+                                            }
+                                            
+                                        }
                                         $ctr++;
                                     }
-                                
+                                }
                             ?>      
                         </table>
-
+                        </div>
                         <!-- <hr class="star-primary"> -->
                     </div>
                </div>
             </div>
         </div>
     </section>
-
                          <!-- DELETE MODAL -->
                         <div id="delete_fruit" class="modal fade" tabindex="-1" role="dialog">
                             <div class="modal-dialog modal-sm">
@@ -222,25 +244,21 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         <h4 class="modal-title">DELETE FRUIT DATA</h4>
                                     </div>
+
                                     <div class="modal-body">
                                         <p>Are you sure you want to delete this fruit?</p>
-                                        <?php //echo "<p> Here it is".$row1[$ctr]["fruitname"]."</p>"; ?>
                                     </div>
+
                                     <div class="modal-footer">
                                         <form action='mysqldb.php' validate method='post'>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                             <input type='submit' name='delete' value='Delete' class='btn btn-danger' />
                                             
                                         </form>
-                                    <!--  From webSource 
-                                            <a class="btn btn-danger btn-ok" name='delete' value='Delete'>Delete</a>
-                                    -->    
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        
 
 
     <!-- Footer -->
@@ -269,7 +287,6 @@
 
 
 
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -277,6 +294,10 @@
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
     <script src="js/freelancer.js"></script>
+    
+    <!--Change to <script src="js/mysql.js"></script> -->
+    <script src="js/mysql.js"></script>
+
    
 
 </body>
