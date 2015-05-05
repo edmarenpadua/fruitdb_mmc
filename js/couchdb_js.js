@@ -4,19 +4,13 @@ $(document).on("click", ".open-delete_fruit", function () {
 //     document.getElementById(delete_this).value = myId;
      $("#record_id").val(myId);
 });
-/*
-$(document).ready(function () {
-    $("#delete").click(function(){
-         $.ajax({
-            type: "GET",
-            url: "index.php", //process to mail
-            data: "id = 10",
-            success: function () {
-                alert("karacute");
-            },
-            error: function(){
-                alert("failure");
-            }
-        });
-    });
-});*/
+
+
+function getEditData(id, name, quantity, distributor, price){
+     $("#record_id").val(id);
+     $("#name").val(name);
+     $("#name_display").val(name);
+     $("#quantity").val(quantity);
+     $("#distributor").val(distributor);
+     $("#price").val(price);
+}

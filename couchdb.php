@@ -35,18 +35,13 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Edit Fruit Data</h4>
                 </div>
-                <form name="" id="" validate method="post" action="">
+                <form name="" id="" validate method="post" action="couchdb.php">
     
                     <div class="modal-body">
                         <input type="hidden" id= "record_id" name = "record_id" value = "">
-                        <?php
-                            $id = "<script>$('#record_id').val();</script>";
-                            echo $id."------------------";
-                        //    $fruit = $client->getDoc("");
-                          //  echo $fruit->name;
-                        ?>
-
-                        <div class="form-group">Name:<input class="form-control" type="text" name="name" id="name" disabled/></div>
+                        <input type="hidden" id= "name" name = "name" value = "">
+                        
+                        <div class="form-group">Name:<input class="form-control" type="text" name="name_display" id="name_display" disabled/></div>
                         <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" id="quantity" required="required"/></div>
                         <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" id="distributor" required="required"/></div>
                         <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" id="price" required="required"/></div>
@@ -55,7 +50,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" name="edit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" name="edit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
     
@@ -221,20 +216,15 @@
                                      //echo "<td>".$mongodb[$i]['price_date'][$j]['price']."</td>";
                                      $j++;
                                     }*/
-
-                                echo "<td><a href='#myModal' class='open-edit_fruit btn btn-info' data-toggle='modal' aria-label='Left Align' data-id='".$fruit->_id."'>";
-                                    echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
-                                echo "</a></td>";
-                                echo "<td><a href='#delete_fruit' class='open-delete_fruit btn btn-danger' data-toggle='modal' aria-label='Left Align' data-id='".$fruit->_id."'>";
-                                    echo "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>";
-                                echo "</a></td>";
-                                    //echo "<input type='hidden' name='record_id' class='btn btn-default' value='".$mongodb[$i]['id']."'/>";
-                                    //echo "<td><input type='submit' name='edit' value='Edit'  class='btn btn-default' /></td>";
-                                    //echo "<td><input type='submit' name='delete' value='Delete' class='btn btn-default' /></td>";
-                                    //echo "<td><a class='open-delete_fruit btn btn-danger' data-toggle='modal' href='#delete_fruit' data-id='".$mongodb[$i]['id']."'>Delete</a></td>";
-                                   
-                                   echo "</tr>";
-                                                         
+                            ?>
+                            <td><a href="#myModal" class="open-edit_fruit btn btn-info" data-toggle="modal" onclick="getEditData('<?php echo $fruit->_id;?>', '<?php echo $fruit->name;?>', '<?php echo $fruit->quantity;?>', '<?php echo $fruit->distributor;?>', '<?php echo $price_list[$latest]->price;?>');" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a></td>
+                            <td><a href="#delete_fruit" class="open-delete_fruit btn btn-danger" data-toggle="modal" aria-label="Left Align" data-id="<?php echo $fruit->_id;?>">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </a></td>
+                            </tr>
+                            <?php                             
                                     if (count($price_list) > 1){
                                         while($j != count($price_list)){
                                              echo "<tr class = 'active'>";
