@@ -35,22 +35,30 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Edit Fruit Data</h4>
                 </div>
+                <form name="" id="" validate method="post" action="">
+    
+                    <div class="modal-body">
+                        <input type="hidden" id= "record_id" name = "record_id" value = "">
+                        <?php
+                            $id = "<script>$('#record_id').val();</script>";
+                            echo $id."------------------";
+                        //    $fruit = $client->getDoc("");
+                          //  echo $fruit->name;
+                        ?>
 
-                <div class="modal-body">
-                    <form name="" id="" validate method="post" action="">
-                            <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" required="required"/></div>
-                            <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" required="required"/></div>
-                            <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" required="required"/></div>
-                            <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" required="required"/></div>
-                            <br>
-                    </form>
-                </div>
+                        <div class="form-group">Name:<input class="form-control" type="text" name="name" id="name" disabled/></div>
+                        <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" id="quantity" required="required"/></div>
+                        <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" id="distributor" required="required"/></div>
+                        <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" id="price" required="required"/></div>
+                        <br>
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" name="edit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+    
             </div>
         </div>
     </div>
@@ -90,7 +98,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-           
+
                 <div>
                     <ul class="nav navbar-nav navbar-left">
                         <li>
@@ -101,12 +109,14 @@
                     <a class="navbar-brand" href="#page-top">&nbsp;&nbsp;CouchDB Fruit MMC</a>
                 </div> 
 
-
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
                     <li class="page-scroll">
                         <a href="mysqldb.php">MySQLDB</a>
                     </li>
@@ -212,7 +222,7 @@
                                      $j++;
                                     }*/
 
-                                echo "<td><a href='#myModal' class='btn btn-info' data-toggle='modal' aria-label='Left Align'>";
+                                echo "<td><a href='#myModal' class='open-edit_fruit btn btn-info' data-toggle='modal' aria-label='Left Align' data-id='".$fruit->_id."'>";
                                     echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
                                 echo "</a></td>";
                                 echo "<td><a href='#delete_fruit' class='open-delete_fruit btn btn-danger' data-toggle='modal' aria-label='Left Align' data-id='".$fruit->_id."'>";
