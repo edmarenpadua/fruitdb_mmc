@@ -96,10 +96,9 @@
                         <li>
                             <img id="logo" src="img/portfolio/mongologo.png" alt="logo">
                         </li>
-                        <li class="page-scroll">
-                            <a class="navbar-brand" href="#page-top">MongoDB Fruit MMC</a>
-                        </li>
+
                     </ul>
+                    <a class="navbar-brand" href="#page-top">&nbsp;&nbsp;MongoDB Fruit MMC</a>
                 </div> 
 
             </div>

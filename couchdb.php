@@ -90,16 +90,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span>
-                 <div>
+           
+                <div>
                     <ul class="nav navbar-nav navbar-left">
                         <li>
                             <img id="logo" src="img/portfolio/couchlogo.png" alt="logo">
                         </li>
-                        <li class="page-scroll">
-                            <a class="navbar-brand" href="#page-top">CouchDB Fruit MMC</a>
-                        </li>
+
                     </ul>
+                    <a class="navbar-brand" href="#page-top">&nbsp;&nbsp;CouchDB Fruit MMC</a>
                 </div> 
 
 

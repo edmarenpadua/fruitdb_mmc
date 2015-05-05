@@ -65,10 +65,9 @@
                         <li>
                             <img id="logo" src="img/portfolio/mysqllogo.png" alt="logo">
                         </li>
-                        <li class="page-scroll">
-                            <a class="navbar-brand" href="#page-top">MysqlDB Fruit MMC</a>
-                        </li>
+
                     </ul>
+                    <a class="navbar-brand" href="#page-top">&nbsp;&nbsp;MysqlDB Fruit MMC</a>
                 </div> 
             </div>
 
