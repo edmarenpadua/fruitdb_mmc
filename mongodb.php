@@ -36,20 +36,20 @@
                     <h4 class="modal-title">Edit Fruit Data</h4>
                 </div>
 
+                <form name="update_fruit" id="update_fruit" validate method="POST" action="">
                 <div class="modal-body">
-                    <form name="" id="" validate method="post" action="">
-                            <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" id="name" required="required" value=""/></div>
-                            <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" id="quantity" required="required" value=""/></div>
-                            <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" id="distributor" required="required" value=""/></div>
-                            <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" id="price" required="required" value=""/></div>
-                            <br>
-                    </form>
+                    <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" id="name" required="required" value=""/></div>
+                    <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" id="quantity" required="required" value=""/></div>
+                    <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" id="distributor" required="required" value=""/></div>
+                    <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" id="price" required="required" value=""/></div>
+                    <br>
                 </div>
 
                 <div class="modal-footer">
-                    <input type="hidden" id = "edit_this" name= "delete_this" value = "" >
-                    <button type="button" class="btn btn-success">Save changes</button>
+                    <input type="input" id = "edit_this" name= "delete_this" value = "" >
+                    <input type="submit" name= "edit" class="btn btn-primary" value ="Save changes"/>
                 </div>
+                </form>
 
             </div>
         </div>

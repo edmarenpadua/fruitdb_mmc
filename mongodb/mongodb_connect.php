@@ -14,6 +14,8 @@ $c2 = $conn->$select_db->selectCollection("fruit_price");
 	INSERT on fruit DB
 */
  if(isset($_POST["submit"])) {
+ 	$b = time();
+
  	$fruit = array();
  	$fruit_price = array();
 
@@ -29,6 +31,14 @@ $c2 = $conn->$select_db->selectCollection("fruit_price");
  	$fruit_price['date']  = date("m-d-Y");
 	//add to fruit_price collection
 	$c2->insert($fruit_price);
+
+	$a = time();
+
+	echo "<br><br><br><br><br><br><br>";
+	echo $a;
+	echo "<br>";
+	echo $b;
+	echo $a-$b;
 }
 
 /*
@@ -67,14 +77,18 @@ foreach ($cursor as $doc) {
 */
 
 if(isset($_POST["edit"])) {
-	$id = $_POST["record_id"];
+	$id = $_POST["edit_this"];
 	//$id_query = array('_id' => new MongoId($id));
+
+	echo "<br><br><br><br><br><br><br><br><br><br>";
+	echo $id;
 
  	$fruit = array();
  	$fruit_price = array();
- 	$fruit['name'] = "Mangosteen";//$_POST['name_edit'];
- 	$fruit['quantity']  = "1000";//$_POST['quantity_edit'];
- 	$fruit['distributor']  = "Summer Love";//$_POST['distributor_edit'];
+ 	$fruit['name'] = $_POST['name'];
+ 	$fruit['quantity']  = $_POST['quantity'];
+ 	$fruit['distributor']  = $_POST['distributor'];
+ 	//$fruit_price['date']  = date("m-d-Y");
 
  	$c1->remove(array('_id' => new MongoId($id)));
 	//add to fruit collection
@@ -86,7 +100,7 @@ if(isset($_POST["edit"])) {
 
 	//var_dump($fruit);
 	//var_dump($c1->findOne(array("name" => "Mangosteen")));
-	header("location: index.php");
+	//header("location: mongodb.php");
 }
 
 
