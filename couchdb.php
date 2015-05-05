@@ -93,15 +93,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                <div>
+               <div>
                     <ul class="nav navbar-nav navbar-left">
                         <li>
                             <img id="logo" src="img/portfolio/couchlogo.png" alt="logo">
                         </li>
-
                     </ul>
-                    <a class="navbar-brand" href="#page-top">&nbsp;&nbsp;CouchDB Fruit MMC</a>
+                    <a class="navbar-brand" href="#page-top">CouchDB Fruit MMC</a>
                 </div> 
 
             </div>
