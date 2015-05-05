@@ -4,17 +4,21 @@ $(document).on("click", ".open-delete_fruit", function () {
      $("#delete_this").val(myId);
 });
 
-$(document).ready(function () {
+/*$(document).ready(function () {
     $("#delete").click(function(){
+        console.log("hello");
+        id = $("#delete_this").val();
          $.ajax({
             type: "GET",
-            url: "index.php", //process to mail
-            data: "id = 10",
+            url: "test.php", //process to mail
+            data: ,
             success: function () {
+                alert(id);
             },
             error: function(){
                 alert("failure");
             }
         });
+         console.log(id);
     });
-});
+});*/
