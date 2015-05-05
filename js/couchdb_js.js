@@ -1,9 +1,10 @@
 $(document).on("click", ".open-delete_fruit", function () {
      var myId = $(this).data('id');
      //alert(myId);
-     $("#delete_this").val(myId);
+//     document.getElementById(delete_this).value = myId;
+     $("#record_id").val(myId);
 });
-
+/*
 $(document).ready(function () {
     $("#delete").click(function(){
          $.ajax({
@@ -11,10 +12,11 @@ $(document).ready(function () {
             url: "index.php", //process to mail
             data: "id = 10",
             success: function () {
+                alert("karacute");
             },
             error: function(){
                 alert("failure");
             }
         });
     });
-});
+});*/

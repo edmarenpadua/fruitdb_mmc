@@ -68,9 +68,9 @@
                 </div>
 
                 <div class="modal-footer">
-                    <form name="del_fruit" id="" validate method="get" action="index.php">
-                        <input type="hidden" id= "delete_this" value = "">
-                        <input type="submit" id= "delete" class="btn btn-danger" value ="Yes, delete"/>
+                    <form name="del_fruit" id="" validate method="POST" action="couchdb.php">
+                        <input type="hidden" id= "record_id" name = "record_id" value = "">
+                        <input type="submit" id= "delete" name = "delete" class="btn btn-danger" value ="Yes, delete"/>
                     </form>
                 </div>
 
@@ -125,7 +125,7 @@
                         <h3>ADD FRUIT</h3>
                         <!-- <hr class="star-primary"> -->
                         <div class="control-group">
-                            <form name="" id="" validate method="post" action="">
+                            <form name="" id="" validate method="post" action="couchdb.php">
                                 <fieldset>
                                     <div class="row control-group">
                                         <div class="form-group col-xs-12 floating-label-form-group controls">
