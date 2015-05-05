@@ -255,7 +255,7 @@
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
     <script src="js/freelancer.js"></script>
-    <script src="js/mongodb.js"></script>
+    <script src="js/mongodb_js.js"></script>
 
 </body>
 
