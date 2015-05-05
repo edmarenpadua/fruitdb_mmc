@@ -167,27 +167,29 @@
                         <div class="control-group col-sm-12" style="float:right;">
                         <table class="table table-striped table-hover">
                             <?php
-                            //var_dump($mongodb);
                                 $i = 0; $j = 0;
                                 if (count($mongodb)==0)
                                     echo "<label><h4>Nothing to display</h4></label>";
                                 else
-                                    echo "<th>Name</th><th>Quantity</th><th>Distributor</th>";
-                                    echo "<th>Price</th><th>Date</th><th>View Price History</th>";
-                                    echo "<th>Edit</th><th>Delete</th>";
+                                    echo "<th class = 'text-center'>Name</th><th class = 'text-center'>Quantity</th><th class = 'text-center'>Distributor</th>";
+                                    echo "<th class = 'text-center'>Price</th><th class = 'text-center'>Date</th>";
+                                    echo "<th class = 'text-center'>Edit</th><th class = 'text-center'>Delete</th>";
                                 while ($i != count($mongodb)){
                                     $name = $mongodb[$i]['name'];
-                                    if ($i%2 != 0)
-                                        echo "<tr class = 'active'>";
-                                    else
-                                        echo "<tr class = 'success'>";
+                                    echo "<tr class = 'success'>";
                                     echo "<td>".$mongodb[$i]['name']."</td>";
                                     echo "<td>".$mongodb[$i]['quantity']."</td>";
                                     echo "<td>".$mongodb[$i]['distributor']."</td>";
                                     $latest = count($mongodb[$i]['price_date']);
                                     echo "<td>".$mongodb[$i]['price_date'][$latest-1]['price']."</td>";
                                     echo "<td>".$mongodb[$i]['price_date'][$latest-1]['date']."</td>";
-                                    echo "<td>".$mongodb[$i]['id']."</td>";
+
+/*                                    while($j != count($mongodb[$i]['price_date']) && count($mongodb[$i]['price_date']) > 0){
+                                        echo "<td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
+                                     //echo "<td>".$mongodb[$i]['price_date'][$j]['date']."</td>";
+                                     //echo "<td>".$mongodb[$i]['price_date'][$j]['price']."</td>";
+                                     $j++;
+                                    }*/
 
                                 echo "<td><a href='#myModal' class='btn btn-info' data-toggle='modal' aria-label='Left Align'>";
                                     echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
@@ -199,17 +201,35 @@
                                     //echo "<td><input type='submit' name='edit' value='Edit'  class='btn btn-default' /></td>";
                                     //echo "<td><input type='submit' name='delete' value='Delete' class='btn btn-default' /></td>";
                                     //echo "<td><a class='open-delete_fruit btn btn-danger' data-toggle='modal' href='#delete_fruit' data-id='".$mongodb[$i]['id']."'>Delete</a></td>";
-                                    //var_dump($mongodb[$i]['price_date']);
-                                    // while($j != count($mongodb[$i]['price_date']) && count($mongodb[$i]['price_date']) > 0){
-                                    //  echo "<td>".$mongodb[$i]['price_date'][$j]['date']."</td>";
-                                    //  echo "<td>".$mongodb[$i]['price_date'][$j]['price']."</td>";
-                                    //  $j++;
-                                    // }
-                                    echo "</tr>";
+                                   
+                                   echo "</tr>";
+                                                         
+                                    if (count($mongodb[$i]['price_date']) > 1){
+                                        while($j != count($mongodb[$i]['price_date'])){
+                                             echo "<tr class = 'active'>";
+                                             echo "<td></td><td></td>";
+                                             if($j == 0) 
+                                                echo "<td>Previous Prices:</td>";
+                                             else
+                                                echo "<td></td>";
+                                             echo "<td>".$mongodb[$i]['price_date'][$j]['price']."</td>";
+                                             echo "<td>".$mongodb[$i]['price_date'][$j]['date']."</td>";
+                                             $j++;
+                                             echo "<td></td><td></td>";
+                                             echo "</tr>";
+                                        }
+                                    }
+                                    else{
+                                         echo "<tr class = 'active'>";
+                                         echo "<td></td><td></td><td></td><td>";
+                                         echo "</tr>";                                     
+                                    }
                                     $i++;
                                     $j = 0;
-                                }
+                                    
+                                
                                 //var_dump($mongodb);
+                                }
                             ?>
 
 
