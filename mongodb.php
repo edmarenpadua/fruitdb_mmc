@@ -69,9 +69,9 @@
                 </div>
 
                 <div class="modal-footer">
-                    <form name="del_fruit" id="" validate method="get" action="index.php">
-                        <input type="hidden" id= "delete_this" value = "">
-                        <input type="submit" id= "delete" class="btn btn-danger" value ="Yes, delete"/>
+                    <form name="del_fruit" id="del_fruit" validate method="POST" action="">
+                        <input type="hidden" id = "delete_this" name= "delete_this" value = "" >
+                        <input type="submit" name= "delete" class="btn btn-danger" value ="Yes, delete"/>
                     </form>
                 </div>
 
