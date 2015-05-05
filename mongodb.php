@@ -27,7 +27,7 @@
 <body id="page-top" class="index">
 
     <!-- Modal -->
-    <div id="myModal" class="modal fade">
+    <div id="edit_fruit" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -38,17 +38,17 @@
 
                 <div class="modal-body">
                     <form name="" id="" validate method="post" action="">
-                            <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" required="required"/></div>
-                            <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" required="required"/></div>
-                            <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" required="required"/></div>
-                            <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" required="required"/></div>
+                            <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" id="name" required="required" value=""/></div>
+                            <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" id="quantity" required="required" value=""/></div>
+                            <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" id="distributor" required="required" value=""/></div>
+                            <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" id="price" required="required" value=""/></div>
                             <br>
                     </form>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <input type="hidden" id = "edit_this" name= "delete_this" value = "" >
+                    <button type="button" class="btn btn-success">Save changes</button>
                 </div>
 
             </div>
@@ -207,7 +207,7 @@
                                      $j++;
                                     }*/
 
-                                echo "<td><a href='#myModal' class='btn btn-info' data-toggle='modal' aria-label='Left Align'>";
+                                echo "<td><a href='#edit_fruit' class='open-edit_fruit btn btn-info' data-toggle='modal' aria-label='Left Align' data-id='".$mongodb[$i]['id']."' data-name='".$mongodb[$i]['name']."' data-quantity='".$mongodb[$i]['quantity']."' data-distributor='".$mongodb[$i]['distributor']."' data-price='".$mongodb[$i]['price_date'][$latest-1]['price']."'>";
                                     echo "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
                                 echo "</a></td>";
                                 echo "<td><a href='#delete_fruit' class='open-delete_fruit btn btn-danger' data-toggle='modal' aria-label='Left Align' data-id='".$mongodb[$i]['id']."'>";
