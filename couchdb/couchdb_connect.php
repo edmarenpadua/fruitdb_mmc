@@ -22,23 +22,26 @@
 
 	$client = new couchClient($couch_dsn, $couch_db);
 
+	if ($_SERVER["REQUEST_METHOD"]=="POST") {
+		if(isset($_POST["add"])){
+			addFruit($_POST["name"], $_POST["quantity"], $_POST["distributor"], $_POST["price"], $client);
+		}else if(isset($_POST["edit"])){
+			updateFruit($_POST["record_id"], $_POST["name"], $_POST["quantity"], $_POST["distributor"], $_POST["price"], $client);
+		}else if(isset($_POST["delete"])){
+			deleteFruit($_POST["record_id"],$client);
+		}
+	}
 
-	/*function addFruit($var){
+	function addFruit($name, $quantity, $distributor, $price, $client){
 		$id;
 		//getting database information
 		try {
-			$info = $client->getDatabaseInfos();
 			$id = (($client->getDatabaseInfos()->doc_count)+($client->getDatabaseInfos()->doc_del_count))."";
 		} catch (Exception $e) {
 			echo "Error:".$e->getMessage()." (errcode=".$e->getCode().")\n";
 			exit(1);
 		}
-		print_r($info);
 
-		$name = "mango";
-		$quantity = 5;
-		$distributor = "kara";
-		$price = 20.5;
 		$date = date("m/d/Y");
 		$price_list = array(
 				array(
@@ -63,24 +66,11 @@
 		}
 		
 	}
-	*/
+	
 
-	//function updateFruit($var){
-		$id = "0";
-		//getting database information
-		try {
-			$info = $client->getDatabaseInfos();
-		} catch (Exception $e) {
-			echo "Error:".$e->getMessage()." (errcode=".$e->getCode().")\n";
-			exit(1);
-		}
-		print_r($info);
-
-		$name = "mango";
-		$quantity = 6;
-		$distributor = "gabby";
-		$price = 11.5;
-		$date = "04/24/2015";
+	function updateFruit($id, $name, $quantity, $distributor, $price, $client){
+		
+		$date = date("m/d/Y");
 		
 		$fruit = $client->getDoc($id);
 		
@@ -112,17 +102,22 @@
 		        exit(1);
 		}
 		
-	//}
-	/*
+	}
+
+	function deleteFruit($id, $client){
+		$fruit = $client->getDoc($id);
+		$client->deleteDoc($fruit);
+	}
+	
 	//getting database information
 	try {
-		$info = $client->getDatabaseInfos();
+		$couchdb = $client->getAllDocs()->rows;
 	} catch (Exception $e) {
 		echo "Error:".$e->getMessage()." (errcode=".$e->getCode().")\n";
 		exit(1);
 	}
-	print_r($info);
-	*/
+	//print_r($info);
+	
 	/*
 	//retrieving entity information
 	try {
