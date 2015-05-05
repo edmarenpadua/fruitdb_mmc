@@ -61,21 +61,21 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div>
-                    <span>
-                        <img id="logo" src="img/portfolio/mysqllogo.png" alt="logo">
-                    </span>
-                    <span>
-                        <a class="navbar-brand" href="#page-top">MysqlDB Fruit MMC</a>
-                    </span>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <img id="logo" src="img/portfolio/mysqllogo.png" alt="logo">
+                        </li>
+                        <li class="page-scroll">
+                            <a class="navbar-brand" href="#page-top">MysqlDB Fruit MMC</a>
+                        </li>
+                    </ul>
                 </div> 
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
+                  
                     <li class="page-scroll">
                         <a href="couchdb.php">CouchDB</a>
                     </li>
@@ -111,15 +111,44 @@
                         <h3>ADD FRUIT</h3>
 
                         <!-- <hr class="star-primary"> -->
-                        <div class="control-group">
+                                                <div class="control-group">
                             <form name="" id="" validate method="post" action="">
-                            <div class="form-group">Name:<input class="form-control" type="text" placeholder="e.g. Mango" name="name" required="required"/></div>
-                            <div class="form-group">Quantity:<input class="form-control" type="text" placeholder="e.g. 5" name="quantity" required="required"/></div>
-                            <div class="form-group">Distributor:<input class="form-control" type="text" placeholder="e.g. Yeah" name="distributor" required="required"/></div>
-                            <div class="form-group">Price:<input class="form-control" type="text" placeholder="e.g. 10.00" name="price" required="required"/></div>
-                            <br>
-                            <div style="float:right;"><input type = "submit" name="submit" value="Add fruit data"  class="btn btn-default" /></div>
-                            <br>
+
+                                <fieldset>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Fruit name</label>
+                                            <input class="form-control" type="text" placeholder="Fruit name" name="name" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Quantity</label>
+                                            <input class="form-control" type="text" placeholder="Quantity" name="quantity" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Distributor</label>
+                                            <input class="form-control" type="text" placeholder="Distributor" name="distributor" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Price</label>
+                                            <input class="form-control" type="text" placeholder="Price" name="price" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-11">
+                                            <br>
+                                            <button type="submit" class="btn btn-success btn-md pull-right" id="submit" name="submit">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+
                         </div>
                     </div>
                     <div class="border col-sm-6 text-center" style="background-color:lavenderblush;">
